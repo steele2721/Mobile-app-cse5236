@@ -28,7 +28,7 @@ TL;DR, each time you want to add a new feature to the project (and by feature I 
 
 1. Checkout the latest version of the project from the master branch, and create a new branch (your branch should be named after the feature you are going to implement). To do this in Android Studio, go to VCS -> Git -> Branches -> Create New Branch
 2. Make changes, commit each change (optionally, push each change if you're working between multiple computers)
-3. Open a pull request so we can look at what you've done before it's merged with the master branch (optional I think, though it's nice if you're not sure about something)
+3. Open a [pull request](https://help.github.com/articles/using-pull-requests/) so we can look at what you've done before it's merged with the master branch (optional I think, though it's nice if you're not sure about something)
 4. Merge with master
 
 The idea behind this is so that **you're not pushing broken code to the master branch**, and to see incremental changes to the code on GitHub. Here's a [useful article about branching](http://nvie.com/posts/a-successful-git-branching-model/).
