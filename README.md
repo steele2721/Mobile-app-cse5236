@@ -7,7 +7,7 @@ Note: since this README lives in the Android project directory, you may want to 
 
 ## Getting Started
 ### Getting latest verison using Android Studio (recommended)
-1. Start Android Studio and click on "Check out version from version control" and then click GitHub
+1. Start Android Studio, close out of any open projects, and click on "Check out version from version control" and then click GitHub
 2. Enter your GitHub login information if you haven't already
 3. Enter your master password if prompted
 4. In the "clone repository" window, in the dropdown box labeled "Git Reposotory URL" select "https://github.com/steele2721/Mobile-app-cse5236.git"
