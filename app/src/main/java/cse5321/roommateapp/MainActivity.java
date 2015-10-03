@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 
 public class MainActivity extends AppCompatActivity {
+
+    // setup debug buttons here
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
