@@ -46,4 +46,7 @@ Here you can see various versions of the code and from here get previous version
 * GitHub supports [Markdown](https://daringfireball.net/projects/markdown/syntax) in nearly every text field on this site, which is how I wrote this very stylish document. I would especially look at the "code" section.
 * Every directory can have its own README page if necessary.
 
+###Parse Information
+*[Here](https://www.parse.com/docs/android/guide) is the tutorial on using Parse within the application. After reading trough it, it does look like we can have multiple user databases. I have yet to see how we cna share the DBs but I would be surprised if they did not have that capability. This looks like it will very easy to implement, we just need to figure out how we want to use it.
+
 If I think of anything else to write here I'll update as needed.
