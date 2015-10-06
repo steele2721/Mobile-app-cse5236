@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -25,16 +24,7 @@ import cse5321.roommateapp.dummy.DummyContent;
 public class ExpenseListFragment extends ListFragment {
 
 
-    ParseQuery<ParseObject> query = ParseQuery.getQuery("Expenses");
-    query.getInBackground(myId, new GetCallback<ParseObject>() {
-        public void done(ParseObject object, ParseException e) {
-            if (e == null) {
-                //objectWasRetrievedSuccessfully(object);
-            } else {
-                //objectRetrievalFailed();
-            }
-        }
-    }
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -67,6 +57,19 @@ public class ExpenseListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Expenses");
+        query.getInBackground("asd", new GetCallback() {
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    //objectWasRetrievedSuccessfully(object);
+                } else {
+                    //objectRetrievalFailed();
+                }
+            }
+        });
+
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
