@@ -14,8 +14,8 @@ public class ExpenseActivity extends AppCompatActivity {
     }
 
 
-//    public void SummaryButtonClick(View v) {
-//        Intent intent = new Intent(this, //Name of Muy summry Activity);
-//        startActivity(intent);
-//    }
+    public void SummaryButtonClick(View v) {
+        Intent intent = new Intent(this, ExpenseSummaryActivity.class);
+        startActivity(intent);
+    }
 }

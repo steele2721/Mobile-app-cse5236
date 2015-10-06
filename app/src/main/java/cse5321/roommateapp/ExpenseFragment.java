@@ -7,11 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.parse.GetCallback;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseException;
-
 import cse5321.roommateapp.dummy.DummyContent;
 
 /**
@@ -21,10 +16,7 @@ import cse5321.roommateapp.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class ExpenseListFragment extends ListFragment {
-
-
-
+public class ExpenseFragment extends ListFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,8 +30,8 @@ public class ExpenseListFragment extends ListFragment {
     private OnFragmentInteractionListener mListener;
 
     // TODO: Rename and change types of parameters
-    public static ExpenseListFragment newInstance(String param1, String param2) {
-        ExpenseListFragment fragment = new ExpenseListFragment();
+    public static ExpenseFragment newInstance(String param1, String param2) {
+        ExpenseFragment fragment = new ExpenseFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -51,25 +43,12 @@ public class ExpenseListFragment extends ListFragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ExpenseListFragment() {
+    public ExpenseFragment() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Expenses");
-        query.getInBackground("asd", new GetCallback() {
-            public void done(ParseObject object, ParseException e) {
-                if (e == null) {
-                    //objectWasRetrievedSuccessfully(object);
-                } else {
-                    //objectRetrievalFailed();
-                }
-            }
-        });
-
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
