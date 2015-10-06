@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Expense Activity"
         android:id="@+id/expense_activity"
+        android:onClick="ExpenseButtonClick"
         />
 
     <!-- button for ryan's stuff -->

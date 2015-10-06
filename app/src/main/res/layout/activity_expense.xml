@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="cse5321.roommateapp.ExpenseActivity">
+
+    <TextView
+        android:id="@+id/expense_activity_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/expense_activity_header"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <Button
+        android:id="@+id/text_you_owe"
+        android:text="@string/expense_you_owe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expense_activity_header"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toStartOf="@+id/amount_you_owe"
+        android:layout_toLeftOf="@+id/amount_you_owe"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/amount_you_owe"
+        style="?android:attr/borderlessButtonStyle"
+        android:onClick="SummaryButtonClick"/>
+    <Button
+        android:id="@+id/amount_you_owe"
+        android:text="@string/expense_you_owe"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expense_activity_header"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center"
+        style="?android:attr/borderlessButtonStyle"
+        android:onClick="SummaryButtonClick"/>
+
+    <!--<fragment android:name="cse5321.roommateapp.ExpenseListFragment"-->
+        <!--android:id="@+id/expense_list_fragment"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_below="@id/amount_you_owe"-->
+        <!--android:layout_height= "match_parent"/>-->
+
+
+</RelativeLayout>
