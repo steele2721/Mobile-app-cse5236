@@ -3,4 +3,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="expense_you_owe">You Owe / Are Owed</string>
+    <string name="expense_activity_header">Expenses</string>
 </resources>
