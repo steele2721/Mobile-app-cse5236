@@ -41,12 +41,12 @@
         style="?android:attr/borderlessButtonStyle"
         android:onClick="SummaryButtonClick"/>
 
-    <fragment android:name="cse5321.roommateapp.ExpenseFragment"
+    <FrameLayout
         android:id="@+id/expense_list_fragment"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_below="@id/amount_you_owe"
-        android:layout_height= "match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@id/amount_you_owe"/>
 
 
 </RelativeLayout>
