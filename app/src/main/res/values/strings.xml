@@ -15,5 +15,7 @@
 
     <!-- Grocery strings -->
     <string name="add_grocery_button">Add Grocery</string>
+    <string name="title_activity_grocery_list">GroceryListActivity</string>
+    <string name="new_grocery_list_name">Name</string>
 
 </resources>
