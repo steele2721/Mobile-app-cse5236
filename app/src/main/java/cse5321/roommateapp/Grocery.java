@@ -4,16 +4,30 @@ import java.util.UUID;
 
 /**
  * Created by ryan on 10/25/15.
+ *
+ * If Grocery.price == -1, price has not been set
  */
 public class Grocery {
     private UUID mID;
     private String mName, mAddedBy, mIsFor;
-    private int price;
+    private int mPrice;
 
     public Grocery(String name, String addedBy, String isFor) {
         mName = name;
         mAddedBy = addedBy;
         mIsFor = isFor;
+        mPrice = -1;
+    }
+
+    public Grocery (String name, String addedBy, String isFor, int price) {
+        mName = name;
+        mAddedBy = addedBy;
+        mIsFor = isFor;
+        mPrice = price;
+    }
+
+    public Grocery(String name) {
+        mName = name;
     }
 
     public UUID getID() {
@@ -22,8 +36,8 @@ public class Grocery {
 
     // setter methods
 
-    public void setPrice(int value) {
-        price = value;
+    public void setPrice(int price) {
+        mPrice = price;
     }
 
     // getter methods
@@ -41,7 +55,7 @@ public class Grocery {
     }
 
     public int getPrice() {
-        return price;
+        return mPrice;
     }
 
 
