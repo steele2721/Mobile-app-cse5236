@@ -28,6 +28,9 @@ public class Grocery {
 
     public Grocery(String name) {
         mName = name;
+        mAddedBy = null;
+        mIsFor = null;
+        mPrice = -1;
     }
 
     public UUID getID() {
