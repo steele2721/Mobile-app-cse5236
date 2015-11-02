@@ -2,6 +2,7 @@ package cse5321.roommateapp;
 
 import android.content.Context;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +30,10 @@ public class GroceryList {
         mGroceryList.add(grocery);
     }
 
+    public boolean contains(Grocery grocery) {
+        return mGroceryList.contains(grocery);
+    }
+
     public void removeGrocery(Grocery grocery) {
         mGroceryList.remove(grocery);
     }
@@ -41,5 +46,6 @@ public class GroceryList {
         }
         return null;
     }
+
 
 }
