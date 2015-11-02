@@ -25,8 +25,12 @@ public class GroceryList {
         mGroceryList = new ArrayList<>();
     }
 
-    public void addGrocery(Grocery g) {
-        mGroceryList.add(g);
+    public void addGrocery(Grocery grocery) {
+        mGroceryList.add(grocery);
+    }
+
+    public void removeGrocery(Grocery grocery) {
+        mGroceryList.remove(grocery);
     }
 
     public Grocery getGrocery(UUID id) {

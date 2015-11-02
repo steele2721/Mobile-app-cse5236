@@ -1,5 +1,11 @@
 package cse5321.roommateapp;
 
+import com.parse.ParseObject;
+
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+import java.util.Currency;
+import java.util.Locale;
 import java.util.UUID;
 
 /**
@@ -7,19 +13,21 @@ import java.util.UUID;
  *
  * If Grocery.price == -1, price has not been set
  */
-public class Grocery {
+public class Grocery extends ParseObject {
     private UUID mID;
     private String mName, mAddedBy, mIsFor;
-    private int mPrice;
+    private double mPrice; // TODO: make BigDecimal, or format for currency
 
     public Grocery(String name, String addedBy, String isFor) {
+        mID = UUID.randomUUID();
         mName = name;
         mAddedBy = addedBy;
         mIsFor = isFor;
-        mPrice = -1;
+        mPrice = -1.0;
     }
 
-    public Grocery (String name, String addedBy, String isFor, int price) {
+    public Grocery (String name, String addedBy, String isFor, double price) {
+        mID = UUID.randomUUID();
         mName = name;
         mAddedBy = addedBy;
         mIsFor = isFor;
@@ -27,10 +35,11 @@ public class Grocery {
     }
 
     public Grocery(String name) {
+        mID = UUID.randomUUID();
         mName = name;
         mAddedBy = null;
         mIsFor = null;
-        mPrice = -1;
+        mPrice = -1.0;
     }
 
     public UUID getID() {
@@ -39,7 +48,7 @@ public class Grocery {
 
     // setter methods
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         mPrice = price;
     }
 
@@ -57,9 +66,7 @@ public class Grocery {
         return mIsFor;
     }
 
-    public int getPrice() {
-        return mPrice;
-    }
+    public double getPrice() { return mPrice; }
 
 
 }
