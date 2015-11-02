@@ -1,36 +1,66 @@
 package cse5321.roommateapp;
 
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import java.util.UUID;
 
 /**
+ * The Expense Object to be used with the application.
  * Created by ryan on 11/2/15.
  */
-public class Expense {
-    private UUID mId;
-    private String mName, mType;
-    private double mAmount;
+@ParseClassName("Expense")
+public class Expense extends ParseObject{
+    private UUID mID;
 
-    public Expense(String name, String type, double amount) {
-        mName = name;
-        mType = type;
-        mAmount = amount;
+    public Expense(String name, String paidBy, String type, double ammount) {
+        setName(name);
+        setType(type);
+        setPaidBy(paidBy);
+        setAmount(ammount);
     }
 
     public UUID getID() {
-        return mId;
+        return mID;
     }
 
+    // setter methods
+    public void setName(String value) {
+        setObjectId(value);
+    }
+
+    public void setType(String value) {
+        put("Type", value);
+    }
+
+    public void setPaidBy(String value) {
+        put("PaidBy", value);
+    }
+
+    public void setAmount(double price) {
+        put("Amount", price);
+    }
+
+    // getter methods
+
     public String getName() {
-        return mName;
+        return getObjectId();
     }
 
     public String getType() {
-        return mType;
+        return getString("Type");
     }
 
-    public double getAmount() {
-        return mAmount;
+    public String getPaidBy() {
+        return getString("PaidBy");
     }
 
+    public double getPrice() {
+        return getInt("Amount");
+    }
 
+    public static ParseQuery<Expense> getQuery() {
+        return ParseQuery.getQuery(Expense.class);
+    }
 }
