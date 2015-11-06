@@ -3,6 +3,7 @@ package cse5321.roommateapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,16 +13,55 @@ import android.widget.EditText;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 
+
 public class MainActivity extends AppCompatActivity {
+
+    private static String TAG = "QuizActivity";
+
+    private Button mexpenseActivityButton;
+
+    private Button mgroceryActivityButton;
+
+    private Button mnewExpenseButton;
+
+
 
     // setup debug buttons here
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate(Bundle) called ");
         setContentView(R.layout.activity_main);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
         ParseInstallation.getCurrentInstallation().saveInBackground();
+        mnewExpenseButton = (Button)findViewById(R.id.new_expense);
+
+        // Inflates New Expense Activity when pressed
+        mnewExpenseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, NewExpenseActivity.class);
+                startActivity(i);
+            }
+        });
+
+        mgroceryActivityButton = (Button)findViewById(R.id.grocery_activity);
+        mgroceryActivityButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //Intent i = new Intent(MainActivity.this, Expe.this);
+            }
+        });
+
+//        mgroceryActivityButton = (Button)findViewById(R.id.grocery_activity);
+//        mgroceryActivityButton.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//                Intent i = new Intent(MainActivity.this, ExpenseActivity.this);
+//                startActivity(i);
+//            }
+//        });
     }
 
     @Override
@@ -46,9 +86,42 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void ExpenseButtonClick(View v) {
-        Intent intent = new Intent(this, ExpenseActivity.class);
-        startActivity(intent);
-    }
+
+
+//    public void ExpenseButtonClick(View v) {
+//        Intent intent = new Intent(this, ExpenseActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        Log.d(TAG, "onStart() called");
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        Log.d(TAG, "onPause() called");
+//    }
+//
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Log.d(TAG, "onResume() called");
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        Log.d(TAG, "onStop() called");
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        Log.d(TAG, "onDestroy() called");
+//    }
+
 
 }
