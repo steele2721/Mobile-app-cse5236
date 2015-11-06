@@ -41,7 +41,7 @@ public class Grocery extends ParseObject {
 
     // setter methods
     public void setName(String value) {
-        setObjectId(value);
+        put("Name", value);
     }
 
     public void setAddedBy(String value) {
@@ -59,7 +59,7 @@ public class Grocery extends ParseObject {
     // getter methods
 
     public String getName() {
-        return getObjectId();
+        return getString("Name");
     }
 
     public String getAddedBy() {
