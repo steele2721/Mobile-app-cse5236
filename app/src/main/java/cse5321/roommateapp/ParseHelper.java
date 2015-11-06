@@ -14,14 +14,14 @@ import java.util.List;
  */
 public class ParseHelper {
 
-    public static void getGroceryList (final Context context){
+    public static void getGroceryList (){
 
         ParseQuery<Grocery> query = ParseQuery.getQuery("Grocery");
         query.findInBackground(new FindCallback<Grocery>() {
             public void done(List<Grocery> objects, ParseException e) {
                 if (e == null) {
+                    GroceryList groceryList = GroceryList.get();
                     for (Grocery grocery : objects) {
-                        GroceryList groceryList = GroceryList.get(context);
                         Log.d(Context.class.toString(), "Getting the GroceryList.");
                         if (!groceryList.contains(grocery)){
                             groceryList.addGrocery(grocery);
@@ -48,6 +48,7 @@ public class ParseHelper {
                         objects.remove(newGrocery);
                     }
                     newGrocery.saveInBackground();
+
                 } else {
                     Log.e(Context.class.toString(), e.toString());
                 }
@@ -56,6 +57,9 @@ public class ParseHelper {
     }
 
     public static void addGrocery(Grocery grocery){
+
+        GroceryList list = GroceryList.get();
+        list.addGrocery(grocery);
         grocery.saveInBackground();
     }
 
@@ -65,8 +69,8 @@ public class ParseHelper {
         query.findInBackground(new FindCallback<Expense>() {
             public void done(List<Expense> objects, ParseException e) {
                 if (e == null) {
+                    ExpenseList expenseList = ExpenseList.get();
                     for (Expense expense : objects) {
-                        ExpenseList expenseList = ExpenseList.get(context);
                         Log.d(Context.class.toString(), "Getting the Expense List.");
                         expenseList.addExpense(expense);
                     }

@@ -14,15 +14,15 @@ public class GroceryList {
     private static GroceryList sGroceryList;
     private List<Grocery> mGroceryList;
 
-    public static GroceryList get(Context context) {
+    public static GroceryList get() {
         if (sGroceryList == null) {
-            sGroceryList = new GroceryList(context);
+            sGroceryList = new GroceryList();
         }
 
         return sGroceryList;
     }
 
-    private GroceryList(Context context) {
+    private GroceryList() {
         mGroceryList = new ArrayList<>();
     }
 
@@ -38,14 +38,12 @@ public class GroceryList {
         mGroceryList.remove(grocery);
     }
 
-    public Grocery getGrocery(UUID id) {
-        for (Grocery grocery : mGroceryList) {
-            if (grocery.getID().equals(id)) {
+    public Grocery getGrocery(Grocery grocery) {
+        for (Grocery item : mGroceryList) {
+            if (item.getID().equals(grocery.getID())) {
                 return grocery;
             }
         }
         return null;
     }
-
-
 }
