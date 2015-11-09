@@ -20,19 +20,22 @@ import java.util.UUID;
 public class Grocery extends ParseObject {
     private UUID mID;
     private double mPrice; // TODO: make BigDecimal, or format for currency
+    private int mQuantity;
 
-    public Grocery(String name, String addedBy, String isFor) {
+    public Grocery(String name, String addedBy, String isFor, int quantity) {
         setName(name);
         setIsFor(isFor);
         setAddedBy(addedBy);
         setPrice(-1.0);
+        setQuantity(quantity);
     }
 
-    public Grocery (String name, String addedBy, String isFor, double price) {
+    public Grocery (String name, String addedBy, String isFor, double price, int quantity) {
         setName(name);
         setIsFor(isFor);
         setAddedBy(addedBy);
         setPrice(price);
+        setQuantity(quantity);
     }
 
     public UUID getID() {
@@ -56,6 +59,10 @@ public class Grocery extends ParseObject {
         put("Price", price);
     }
 
+    public void setQuantity(int quantity) {
+        mQuantity = quantity;
+    }
+
     // getter methods
 
     public String getName() {
@@ -72,6 +79,10 @@ public class Grocery extends ParseObject {
 
     public double getPrice() {
         return getInt("Price");
+    }
+
+    public int getQuantity() {
+        return mQuantity;
     }
 
     public static ParseQuery<Grocery> getQuery() {
