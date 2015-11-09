@@ -38,6 +38,13 @@ public class GroceryList {
         mGroceryList.remove(grocery);
     }
 
+    public void recreate(List<Grocery> objects) {
+        mGroceryList = null;
+        for (Grocery grocery : objects) {
+            addGrocery(grocery);
+        }
+    }
+
     public Grocery getGrocery(Grocery grocery) {
         for (Grocery item : mGroceryList) {
             if (item.getID().equals(grocery.getID())) {

@@ -28,7 +28,7 @@ public class NewGroceryActivityFragment extends Fragment {
             public void onClick(View v) {
                 // this is a test object! 
                 Grocery newItem = new Grocery("paper", "ryan", "ryan", 22);
-                GroceryList.get(view.getContext()).addGrocery(newItem);
+                GroceryList.get().addGrocery(newItem);
                 newItem.saveInBackground();
             }
         });

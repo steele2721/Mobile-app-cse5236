@@ -21,15 +21,9 @@ public class ParseHelper {
             public void done(List<Grocery> objects, ParseException e) {
                 if (e == null) {
                     GroceryList groceryList = GroceryList.get();
-                    for (Grocery grocery : objects) {
-                        Log.d(Context.class.toString(), "Getting the GroceryList.");
-                        if (!groceryList.contains(grocery)){
-                            groceryList.addGrocery(grocery);
-                        } else {
-                            groceryList.removeGrocery(grocery);
-                            groceryList.addGrocery(grocery);
-                        }
-                    }
+                    groceryList.recreate(objects);
+                    Log.d(Context.class.toString(), "Getting the GroceryList.");
+
                 } else {
                     Log.e(Context.class.toString(), e.toString());
                 }
@@ -37,14 +31,14 @@ public class ParseHelper {
         });
     }
 
-    public static void updateGroceryList (final Context context,final Grocery newGrocery){
+    public static void updateGroceryList (final Context context, final Grocery newGrocery){
 
         ParseQuery<Grocery> query = ParseQuery.getQuery("Grocery");
         query.findInBackground(new FindCallback<Grocery>() {
             public void done(List<Grocery> objects, ParseException e) {
                 if (e == null) {
                     Log.d(Context.class.toString(), "Updating the Grocery List.");
-                    if (objects.contains(newGrocery)){
+                    if (objects.contains(newGrocery)) {
                         objects.remove(newGrocery);
                     }
                     newGrocery.saveInBackground();
@@ -54,26 +48,21 @@ public class ParseHelper {
                 }
             }
         });
+
+
     }
 
-    public static void addGrocery(Grocery grocery){
-
-        GroceryList list = GroceryList.get();
-        list.addGrocery(grocery);
-        grocery.saveInBackground();
-    }
-
-    public static void getExpenseList (final Context context){
+    public static void getExpenseList (){
 
         ParseQuery<Expense> query = ParseQuery.getQuery("Expense");
+        Log.d(Context.class.toString(), "Starting Expense Query.");
         query.findInBackground(new FindCallback<Expense>() {
+            @Override
             public void done(List<Expense> objects, ParseException e) {
                 if (e == null) {
+                    Log.d(Context.class.toString(), "Getting Expense List.");
                     ExpenseList expenseList = ExpenseList.get();
-                    for (Expense expense : objects) {
-                        Log.d(Context.class.toString(), "Getting the Expense List.");
-                        expenseList.addExpense(expense);
-                    }
+                    expenseList.recreate(objects);
                 } else {
                     Log.e(Context.class.toString(), e.toString());
                 }

@@ -19,8 +19,6 @@ public class ExpenseActivity extends FragmentActivity {
 
         //Create the fragment
         ExpenseFragment expenseFragment = new ExpenseFragment();
-        // Install the Account fragment
-        // For Android 3.0 and above comment out the line below
         FragmentManager fragmentManager = getSupportFragmentManager();
         //For Android 3.0 and above uncomment the line below
         //FragmentManager fragmentManager = getFragmentManager();
@@ -30,7 +28,6 @@ public class ExpenseActivity extends FragmentActivity {
         fragmentTransaction.commit();
 
     }
-
 
     public void SummaryButtonClick(View v) {
         Intent intent = new Intent(this, ExpenseSummaryActivity.class);

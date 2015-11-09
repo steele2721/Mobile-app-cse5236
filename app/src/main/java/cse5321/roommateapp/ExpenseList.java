@@ -62,6 +62,13 @@ public class ExpenseList {
         return null;
     }
 
+    public void recreate(List<Expense> objects) {
+        mExpenseList = null;
+        for (Expense expense : objects) {
+            addExpense(expense);
+        }
+    }
+
     public List<Expense> getExpenseList() {
         return mExpenseList;
     }
