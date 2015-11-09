@@ -20,14 +20,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ExpenseFragment extends Fragment implements OnClickListener{
+    private ExpenseList expenseList;
+
     private EditText etUsername;
     private EditText etPassword;
     private EditText etConfirm;
 
     @Override
+    public void onCreate(Bundle saveInstanceState){
+        super.onCreate(saveInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_expense_activity_summary, container, false);
+        View v =  inflater.inflate(R.layout.expense_fragment_layout, container, false);
         return v;
     }
 
