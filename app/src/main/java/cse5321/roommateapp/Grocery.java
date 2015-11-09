@@ -16,7 +16,7 @@ import java.util.UUID;
  *
  * If Grocery.price == -1, price has not been set
  */
-@ParseClassName("Grocery")
+@ParseClassName("Groceries")
 public class Grocery extends ParseObject {
     private UUID mID;
     private double mPrice; // TODO: make BigDecimal, or format for currency
@@ -36,6 +36,10 @@ public class Grocery extends ParseObject {
         setAddedBy(addedBy);
         setPrice(price);
         setQuantity(quantity);
+    }
+
+    public Grocery() {
+
     }
 
     public UUID getID() {

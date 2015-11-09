@@ -10,7 +10,7 @@ import java.util.UUID;
  * The Expense Object to be used with the application.
  * Created by ryan on 11/2/15.
  */
-@ParseClassName("Expense")
+@ParseClassName("Expenses")
 public class Expense extends ParseObject{
     private UUID mID;
 

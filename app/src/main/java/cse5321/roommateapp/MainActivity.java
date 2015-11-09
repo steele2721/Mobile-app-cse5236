@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
+import com.parse.ParseObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,14 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
+        ParseObject.registerSubclass(Grocery.class);
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
         Button groceryButton = (Button) findViewById(R.id.grocery_activity);
         final Context thisContext = this;
         groceryButton.setOnClickListener(new View.OnClickListener() {
-           public void onClick(View v) {
-               startActivity(new Intent(thisContext, GroceryListActivity.class));
-           }
+            public void onClick(View v) {
+                startActivity(new Intent(thisContext, GroceryListActivity.class));
+            }
         });
     }
 

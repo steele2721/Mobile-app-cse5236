@@ -20,13 +20,16 @@ public class NewGroceryActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_new_grocery, container, false);
+        final View view = inflater.inflate(R.layout.fragment_new_grocery, container, false);
 
         Button createButton = (Button) view.findViewById(R.id.new_grocery_button);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // create new grocery!
+                // this is a test object! 
+                Grocery newItem = new Grocery("paper", "ryan", "ryan", 22);
+                GroceryList.get(view.getContext()).addGrocery(newItem);
+                newItem.saveInBackground();
             }
         });
 
