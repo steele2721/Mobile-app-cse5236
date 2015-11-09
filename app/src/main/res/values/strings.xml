@@ -7,8 +7,6 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="expense_you_owe">You Owe / Are Owed</string>
     <string name="expense_activity_header">Expenses</string>
-    <string name="title_activity_new_grocery">NewGroceryActivity</string>
-    <string name="title_activity_grovery">GroveryActivity</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,5 +15,12 @@
     <string name="add_grocery_button">Add Grocery</string>
     <string name="title_activity_grocery_list">Grocery List</string>
     <string name="new_grocery_list_name">Grocery Item Name</string>
+    <string name="action_new_grocery">New Grocery</string>
+    <string name="new_grocery_edittext_default">Enter grocery item name</string>
+    <string name="new_grocery_title">New Grocery</string>
+    <string name="new_grocery_button_text">Create</string>
+    <string name="new_grocery_edittext_quantity_default">Quanitity</string>
+    <string name="title_activity_new_grocery">Create New Grocery</string>
+    <string name="title_activity_grovery">GroveryActivity</string>
 
 </resources>
