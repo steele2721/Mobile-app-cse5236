@@ -13,23 +13,43 @@ public class ExpenseList {
     public static ExpenseList sExpenseList;
     public List<Expense> mExpenseList;
 
-    public static ExpenseList get(Context context) {
+    public static ExpenseList get() {
         if (sExpenseList == null) {
-            sExpenseList = new ExpenseList(context);
+            sExpenseList = new ExpenseList();
         }
 
         return sExpenseList;
     }
 
-    public ExpenseList(Context context) {
+    public ExpenseList() {
         mExpenseList = new ArrayList<>();
     }
 
     public void addExpense(Expense expense) {
+
+        UserList users = UserList.get();
+        for(User user : users){
+            if (user.getName().equals(expense.getPaidBy())){
+                user.setAmountPaid(user.getAmountPaid() + expense.getPrice());
+            } else {
+                double amount = user.getAmountOwed();
+                user.setAmountOwed(amount + (1 / users.size()) * expense.getPrice());
+            }
+        }
         mExpenseList.add(expense);
+
     }
 
-    public void removeExpense(Expense expense) {
+    public void removeExpense(Expense expense, Context context) {
+        UserList users = UserList.get();
+        for(User user : users){
+            if (user.getName().equals(expense.getPaidBy())){
+                user.setAmountPaid(user.getAmountPaid() - expense.getPrice());
+            } else {
+                double amount = user.getAmountOwed();
+                user.setAmountOwed(amount - (1 / users.size()) * expense.getPrice());
+            }
+        }
         mExpenseList.remove(expense);
     }
 
@@ -39,7 +59,6 @@ public class ExpenseList {
                 return expense;
             }
         }
-
         return null;
     }
 
