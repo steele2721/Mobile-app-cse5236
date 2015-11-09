@@ -29,7 +29,7 @@ public class Expense extends ParseObject{
 
     // setter methods
     public void setName(String value) {
-        setObjectId(value);
+        put("Name", value);
     }
 
     public void setType(String value) {
@@ -48,7 +48,7 @@ public class Expense extends ParseObject{
     // getter methods
 
     public String getName() {
-        return getObjectId();
+        return getString("Name");
     }
 
     public String getType() {

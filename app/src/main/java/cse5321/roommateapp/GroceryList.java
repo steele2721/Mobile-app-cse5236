@@ -47,5 +47,7 @@ public class GroceryList {
         return null;
     }
 
+    public List<Grocery> getGroceryList() { return mGroceryList; }
+
 
 }

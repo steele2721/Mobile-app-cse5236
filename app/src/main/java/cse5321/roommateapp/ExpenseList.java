@@ -42,4 +42,8 @@ public class ExpenseList {
 
         return null;
     }
+
+    public List<Expense> getExpenseList() {
+        return mExpenseList;
+    }
 }
