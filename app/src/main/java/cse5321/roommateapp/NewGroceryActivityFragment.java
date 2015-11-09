@@ -1,5 +1,6 @@
 package cse5321.roommateapp;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,10 +27,11 @@ public class NewGroceryActivityFragment extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // this is a test object! 
+                // this is a test object!
                 Grocery newItem = new Grocery("paper", "ryan", "ryan", 22);
-                GroceryList.get(view.getContext()).addGrocery(newItem);
-                newItem.saveInBackground();
+                GroceryList.get().addGrocery(newItem);
+                newItem.saveInBackground(); // TODO: use parse!
+                // TODO: return to list view, update list view
             }
         });
 
