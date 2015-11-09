@@ -72,6 +72,12 @@
             android:label="@string/title_activity_new_grocery"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".NewExpenseActivity"
+            android:label="new Expense"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

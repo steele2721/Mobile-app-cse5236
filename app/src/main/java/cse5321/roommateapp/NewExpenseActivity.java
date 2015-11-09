@@ -40,10 +40,13 @@ public class NewExpenseActivity extends AppCompatActivity {
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String expenseAmount = mExpenseAmount.getText().toString();
+
+                String  expenseAmount = mExpenseAmount.getText().toString();
                 String expenseDueDate = mExpenseDueDate.getText().toString();
                 String expensePaidBy = mExpensePaidBy.getText().toString();
-                double expenseName = Double.valueOf(mExpenseName.getText().toString());
+                double expenseName =Double.valueOf(mExpenseName.getText().toString());
+                String expenseType = mExpensetype.getText().toString();
+
 
 
             }

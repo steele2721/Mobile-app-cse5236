@@ -9,11 +9,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
+    private Button mnewExpenseButton;
+    private Button mgroceryActivityButton;
 
     // setup debug buttons here
 
@@ -23,41 +28,72 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
         ParseInstallation.getCurrentInstallation().saveInBackground();
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment expenseFragment = fm.findFragmentById(R.id.expense_fragment_container);
+        if (expenseFragment == null) {
+            expenseFragment = new ExpenseFragment();
+            fm.beginTransaction()
+                    .add(R.id.expense_fragment_container, expenseFragment)
+                    .commit();
+        }
+            Fragment groceryFragment = fm.findFragmentById(R.id.expense_fragment_container);
+            if (groceryFragment == null) {
+                groceryFragment = new GroceryListActivityFragment();
+                fm.beginTransaction()
+                        .add(R.id.grocery_fragment_container, groceryFragment)
+                        .commit();
 
-        Button groceryButton = (Button) findViewById(R.id.grocery_activity);
-        final Context thisContext = this;
-        groceryButton.setOnClickListener(new View.OnClickListener() {
-           public void onClick(View v) {
-               startActivity(new Intent(thisContext, GroceryListActivity.class));
-           }
+
+
+        }
+
+        mnewExpenseButton = (Button) findViewById(R.id.new_expense);
+
+        // Inflates New Expense Activity when pressed New Expsense button pressed
+        mnewExpenseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, NewExpenseActivity.class);
+                startActivity(i);
+            }
         });
+
+//
+
+//        Button groceryButton = (Button) findViewById(R.id.grocery_activity);
+//        final Context thisContext = this;
+//        groceryButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                startActivity(new Intent(thisContext, GroceryListActivity.class));
+//            }
+//        });
+
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
 
-    public void ExpenseButtonClick(View v) {
-        Intent intent = new Intent(this, ExpenseActivity.class);
-        startActivity(intent);
-    }
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
 
+            return super.onOptionsItemSelected(item);
+        }
+//
+//    public void ExpenseButtonClick(View v) {
+//        Intent intent = new Intent(this, ExpenseActivity.class);
+//        startActivity(intent);
+//    }
 }
+
