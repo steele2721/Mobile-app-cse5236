@@ -1,5 +1,6 @@
 package cse5321.roommateapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
         ParseInstallation.getCurrentInstallation().saveInBackground();
+
+        Button groceryButton = (Button) findViewById(R.id.grocery_activity);
+        final Context thisContext = this;
+        groceryButton.setOnClickListener(new View.OnClickListener() {
+           public void onClick(View v) {
+               startActivity(new Intent(thisContext, GroceryListActivity.class));
+           }
+        });
     }
 
     @Override
