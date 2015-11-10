@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Date;
+
 public class NewExpenseActivity extends AppCompatActivity {
 
     EditText mExpenseName;
@@ -41,12 +43,12 @@ public class NewExpenseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String  expenseAmount = mExpenseAmount.getText().toString();
-                String expenseDueDate = mExpenseDueDate.getText().toString();
+                double expenseAmount = Double.valueOf(mExpenseAmount.getText().toString());
+                Date expenseDueDate = (Date)mExpenseDueDate.getText();
                 String expensePaidBy = mExpensePaidBy.getText().toString();
-                double expenseName =Double.valueOf(mExpenseName.getText().toString());
+                String expenseName = mExpenseName.getText().toString();
                 String expenseType = mExpensetype.getText().toString();
-
+                Expense expense = new Expense(expenseName, expensePaidBy, expenseType,expenseAmount, expenseDueDate);
 
 
             }

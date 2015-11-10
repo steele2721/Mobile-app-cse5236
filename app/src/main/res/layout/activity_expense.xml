@@ -45,8 +45,27 @@
         android:id="@+id/expense_list_fragment"
         android:layout_weight="2"
         android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/amount_you_owe"/>
+        android:layout_below="@+id/expense_list_fragment"
+        android:layout_alignRight="@+id/expense_list_fragment"
+        android:layout_alignEnd="@+id/expense_list_fragment">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Expense"
+            android:id="@+id/new_expense" />
+    </LinearLayout>
 
 
 </RelativeLayout>

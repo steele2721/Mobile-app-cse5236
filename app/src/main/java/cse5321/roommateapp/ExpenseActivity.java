@@ -17,6 +17,16 @@ public class ExpenseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense);
 
+
+        Button mnewExpenseButton = (Button)findViewById(R.id.new_expense);
+        // Inflates New Expense Activity when pressed New Expsense button pressed
+        mnewExpenseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ExpenseActivity.this, NewExpenseActivity.class);
+                startActivity(i);
+            }
+        });
         //Create the fragment
         ExpenseFragment expenseFragment = new ExpenseFragment();
         // Install the Account fragment
