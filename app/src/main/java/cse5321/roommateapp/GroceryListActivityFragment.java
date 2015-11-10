@@ -28,12 +28,7 @@ public class GroceryListActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_grocery_list, container, false);
 
-<<<<<<< HEAD
         mGroceries = GroceryList.get().getGroceryList();
-
-=======
-        List<Grocery> groceries = GroceryList.get().getGroceryList();
->>>>>>> f5ff1838589f2d2000155d9542aa13b2b9fb5ccd
         mListView = (ListView) v.findViewById(R.id.grocery_list_view);
         mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
         mListView.setAdapter(mAdapter);
