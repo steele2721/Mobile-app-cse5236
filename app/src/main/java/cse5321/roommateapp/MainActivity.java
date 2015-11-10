@@ -12,16 +12,14 @@ import android.widget.Button;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
+import com.parse.ParseObject;
 
 
 public class MainActivity extends FragmentActivity{
 
     private static String TAG = "QuizActivity";
-
     private Button mexpenseActivityButton;
-
     private Button mgroceryActivityButton;
-
     private Button mnewExpenseButton;
 
 
@@ -33,6 +31,8 @@ public class MainActivity extends FragmentActivity{
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate(Bundle) called ");
         setContentView(R.layout.activity_main);
+        ParseObject.registerSubclass(Expense.class);
+        ParseObject.registerSubclass(Grocery.class);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
         ParseInstallation.getCurrentInstallation().saveInBackground();
         mnewExpenseButton = (Button)findViewById(R.id.new_expense);
