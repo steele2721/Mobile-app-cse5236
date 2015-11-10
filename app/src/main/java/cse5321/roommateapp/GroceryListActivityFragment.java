@@ -1,5 +1,7 @@
 package cse5321.roommateapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import java.util.List;
  */
 public class GroceryListActivityFragment extends Fragment {
     private ListView mListView;
+    private List<Grocery> mGroceries;
 
     public GroceryListActivityFragment() {
     }
@@ -23,10 +26,10 @@ public class GroceryListActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_grocery_list, container, false);
 
-        List<Grocery> groceries = GroceryList.get().getGroceryList();
+        mGroceries = GroceryList.get().getGroceryList();
 
         mListView = (ListView) v.findViewById(R.id.grocery_list_view);
-        mListView.setAdapter(new GroceryListAdapter(getActivity(), R.id.grocery_list_view, groceries));
+        mListView.setAdapter(new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries));
         return v;
     }
 }

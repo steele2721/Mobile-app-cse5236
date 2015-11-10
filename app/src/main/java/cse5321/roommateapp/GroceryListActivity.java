@@ -46,7 +46,11 @@ public class GroceryListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_new_grocery:
                 Intent intent = new Intent(this, NewGroceryActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
+                return true;
+
+            case R.id.action_refresh_grocery_list:
+
                 return true;
 
             default:
