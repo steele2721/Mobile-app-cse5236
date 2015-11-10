@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,12 @@ public class GroceryListActivityFragment extends Fragment {
     }
 
     public void updateListView() {
+        ParseHelper.getGroceryList();
         mAdapter.notifyDataSetChanged();
-        Toast.makeText(getContext(), "Refreshing grocery list", Toast.LENGTH_SHORT).show();
+        mGroceries = GroceryList.get().getGroceryList();
+        mListView = (ListView) getActivity().findViewById(R.id.grocery_list_view);
+        mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
+        mListView.setAdapter(mAdapter);
+                Toast.makeText(getContext(), "Refreshing grocery list", Toast.LENGTH_SHORT).show();
     }
 }
