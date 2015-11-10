@@ -10,15 +10,16 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
+ * USed for populating the Expense listview
  * Created by ryan on 11/8/15.
  */
-public class GroceryListAdapter extends ArrayAdapter<Grocery> {
+public class ExpenseListAdapter extends ArrayAdapter<Expense> {
 
-    public GroceryListAdapter(Context context, int textViewResourceId) {
+    public ExpenseListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
-    public GroceryListAdapter(Context context, int resource, List<Grocery> items) {
+    public ExpenseListAdapter(Context context, int resource, List<Expense> items) {
         super(context, resource, items);
     }
 
@@ -30,14 +31,14 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
         if (v == null) {
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.grocery_item_layout, null);
+            v = vi.inflate(R.layout.expense_item_layout, null);
         }
 
-        Grocery item = getItem(position);
+        Expense item = getItem(position);
 
-        // TODO: add more fields!! Format to look nice!
+        // TODO: add more fields!!
         if (item != null) {
-            TextView groceryNameView = (TextView) v.findViewById(R.id.grocery_item_name);
+            TextView groceryNameView = (TextView) v.findViewById(R.id.expense_item_name);
 
             if (groceryNameView != null) {
                 groceryNameView.setText(item.getName());

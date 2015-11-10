@@ -4,23 +4,31 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.util.Date;
 import java.util.UUID;
 
 /**
  * The Expense Object to be used with the application.
  * Created by ryan on 11/2/15.
  */
-@ParseClassName("Expense")
+@ParseClassName("Expenses")
 public class Expense extends ParseObject{
     private UUID mID;
 
-    public Expense(String name, String paidBy, String type, double amount, Date dueDate) {
+    public Expense() {
+    }
+
+    public Expense(String name, String paidBy, String type, double ammount) {
         setName(name);
         setType(type);
         setPaidBy(paidBy);
-        setAmount(amount);
-        setDueDate(dueDate);
+        setAmount(ammount);
+    }
+
+    public Expense(ParseObject object) {
+        setName(object.getString("objectID"));
+        setPaidBy(object.getString("PaidBy"));
+        setType(object.getString("Type"));
+        setAmount(object.getDouble("Amount"));
     }
 
     public UUID getID() {
@@ -44,7 +52,6 @@ public class Expense extends ParseObject{
         put("Amount", price);
     }
 
-    public void setDueDate(Date dueDate){put ("DueDate", dueDate);}
     // getter methods
 
     public String getName() {
@@ -63,10 +70,7 @@ public class Expense extends ParseObject{
         return getInt("Amount");
     }
 
-    public Date getDate(){return getDate("DueDate");}
-
     public static ParseQuery<Expense> getQuery() {
         return ParseQuery.getQuery(Expense.class);
     }
-
 }

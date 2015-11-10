@@ -3,26 +3,29 @@ package cse5321.roommateapp;
 import android.content.Context;
 
 
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
+ * List that holds the grocery objects
  * Created by ryan on 10/25/15.
  */
 public class GroceryList {
     private static GroceryList sGroceryList;
     private List<Grocery> mGroceryList;
 
-    public static GroceryList get(Context context) {
+    public static GroceryList get() {
         if (sGroceryList == null) {
-            sGroceryList = new GroceryList(context);
+            sGroceryList = new GroceryList();
         }
 
         return sGroceryList;
     }
 
-    private GroceryList(Context context) {
+    private GroceryList() {
         mGroceryList = new ArrayList<>();
     }
 
@@ -38,16 +41,24 @@ public class GroceryList {
         mGroceryList.remove(grocery);
     }
 
-    public Grocery getGrocery(UUID id) {
-        for (Grocery grocery : mGroceryList) {
-            if (grocery.getID().equals(id)) {
+    public void recreate(List<ParseObject> objects) {
+        mGroceryList = new ArrayList<>();
+        for (ParseObject object : objects) {
+            Grocery grocery = new Grocery(object);
+            addGrocery(grocery);
+        }
+    }
+
+    public Grocery getGrocery(Grocery grocery) {
+        for (Grocery item : mGroceryList) {
+            if (item.getID().equals(grocery.getID())) {
                 return grocery;
             }
         }
         return null;
     }
 
-    public List<Grocery> getGroceryList() { return mGroceryList; }
-
-
+    public List<Grocery> getGroceryList() {
+        return mGroceryList;
+    }
 }

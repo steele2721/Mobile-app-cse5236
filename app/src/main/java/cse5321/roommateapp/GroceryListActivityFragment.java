@@ -1,19 +1,25 @@
 package cse5321.roommateapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment that displays list of groceries
  */
 public class GroceryListActivityFragment extends Fragment {
     private ListView mListView;
+    private List<Grocery> mGroceries;
+    private GroceryListAdapter mAdapter;
 
     public GroceryListActivityFragment() {
     }
@@ -23,9 +29,21 @@ public class GroceryListActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_grocery_list, container, false);
 
-        List<Grocery> groceries = GroceryList.get(getContext()).getGroceryList();
+        ParseHelper.getGroceryList();
+        mGroceries = GroceryList.get().getGroceryList();
         mListView = (ListView) v.findViewById(R.id.grocery_list_view);
-        mListView.setAdapter(new GroceryListAdapter(getActivity(), R.id.grocery_list_view, groceries));
+        mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
+        mListView.setAdapter(mAdapter);
         return v;
+    }
+
+    public void updateListView() {
+        ParseHelper.getGroceryList();
+        mAdapter.notifyDataSetChanged();
+        mGroceries = GroceryList.get().getGroceryList();
+        mListView = (ListView) getActivity().findViewById(R.id.grocery_list_view);
+        mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
+        mListView.setAdapter(mAdapter);
+                Toast.makeText(getContext(), "Refreshing grocery list", Toast.LENGTH_SHORT).show();
     }
 }
