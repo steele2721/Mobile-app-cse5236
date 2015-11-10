@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment for creating a new grocery item
  */
 public class NewGroceryActivityFragment extends Fragment {
 

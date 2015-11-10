@@ -8,15 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.List;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment that displays list of groceries
  */
 public class GroceryListActivityFragment extends Fragment {
     private ListView mListView;
     private List<Grocery> mGroceries;
+    private GroceryListAdapter mAdapter;
 
     public GroceryListActivityFragment() {
     }
@@ -29,7 +31,13 @@ public class GroceryListActivityFragment extends Fragment {
         mGroceries = GroceryList.get().getGroceryList();
 
         mListView = (ListView) v.findViewById(R.id.grocery_list_view);
-        mListView.setAdapter(new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries));
+        mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
+        mListView.setAdapter(mAdapter);
         return v;
+    }
+
+    public void updateListView() {
+        mAdapter.notifyDataSetChanged();
+        Toast.makeText(getContext(), "Refreshing grocery list", Toast.LENGTH_SHORT).show();
     }
 }

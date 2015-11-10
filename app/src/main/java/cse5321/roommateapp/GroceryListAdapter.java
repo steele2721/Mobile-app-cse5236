@@ -35,7 +35,7 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
 
         Grocery item = getItem(position);
 
-        // TODO: add more fields!!
+        // TODO: add more fields!! Format to look nice!
         if (item != null) {
             TextView groceryNameView = (TextView) v.findViewById(R.id.grocery_item_name);
 

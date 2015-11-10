@@ -15,7 +15,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
+/**
+ * Activity that displays the GroceryList
+ */
 public class GroceryListActivity extends AppCompatActivity {
+    private GroceryListActivityFragment mGroceryListActivityFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +29,11 @@ public class GroceryListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(R.id.grocery_list_fragment);
+        mGroceryListActivityFragment = (GroceryListActivityFragment) fm.findFragmentById(R.id.grocery_list_fragment);
 
-        if (fragment == null) {
-            fragment = new GroceryListActivityFragment();
-            fm.beginTransaction().add(R.id.grocery_list_fragment, fragment).commit();
+        if (mGroceryListActivityFragment == null) {
+            mGroceryListActivityFragment = new GroceryListActivityFragment();
+            fm.beginTransaction().add(R.id.grocery_list_fragment, mGroceryListActivityFragment).commit();
         }
 
     }
@@ -50,7 +54,7 @@ public class GroceryListActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_refresh_grocery_list:
-
+                mGroceryListActivityFragment.updateListView();
                 return true;
 
             default:

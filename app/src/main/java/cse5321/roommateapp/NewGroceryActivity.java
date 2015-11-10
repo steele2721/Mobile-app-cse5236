@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+/**
+ * New grocery activity. Used in creating a new grocery object.
+ */
 public class NewGroceryActivity extends AppCompatActivity {
 
     @Override
