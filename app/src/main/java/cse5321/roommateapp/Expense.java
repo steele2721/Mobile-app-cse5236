@@ -14,11 +14,21 @@ import java.util.UUID;
 public class Expense extends ParseObject{
     private UUID mID;
 
+    public Expense() {
+    }
+
     public Expense(String name, String paidBy, String type, double ammount) {
         setName(name);
         setType(type);
         setPaidBy(paidBy);
         setAmount(ammount);
+    }
+
+    public Expense(ParseObject object) {
+        setName(object.getString("objectID"));
+        setPaidBy(object.getString("PaidBy"));
+        setType(object.getString("Type"));
+        setAmount(object.getDouble("Amount"));
     }
 
     public UUID getID() {

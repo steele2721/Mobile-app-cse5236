@@ -58,8 +58,8 @@ public class NewGroceryActivityFragment extends Fragment {
                         item = new Grocery(name, "ryan", isFor, quantity);
                     }
 
-                    GroceryList.get().addGrocery(item);
-                    ParseHelper.updateGroceryList(getContext(), item);
+                    ParseHelper.updateGroceryList(item);
+                    item.saveInBackground();
                     getActivity().finish();
                 }
             }

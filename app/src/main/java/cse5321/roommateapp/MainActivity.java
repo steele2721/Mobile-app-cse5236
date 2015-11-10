@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ParseObject.registerSubclass(Expense.class);
+        ParseObject.registerSubclass(Grocery.class);
+        //ParseObject.registerSubclass(User.class);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
         ParseObject.registerSubclass(Grocery.class);
         ParseInstallation.getCurrentInstallation().saveInBackground();

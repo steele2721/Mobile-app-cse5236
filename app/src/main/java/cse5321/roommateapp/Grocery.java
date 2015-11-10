@@ -22,6 +22,9 @@ public class Grocery extends ParseObject {
     private double mPrice; // TODO: make BigDecimal, or format for currency
     private int mQuantity;
 
+    public Grocery() {
+    }
+
     public Grocery(String name, String addedBy, String isFor, int quantity) {
         setName(name);
         setIsFor(isFor);
@@ -38,8 +41,12 @@ public class Grocery extends ParseObject {
         setQuantity(quantity);
     }
 
-    public Grocery() {
-
+    public Grocery (ParseObject object) {
+        setName(object.getString("Name"));
+        setIsFor(object.getString("IsFor"));
+        setAddedBy(object.getString("AddedBy"));
+        setPrice(object.getDouble("Price"));
+        setQuantity(object.getInt("Quantity"));
     }
 
     public UUID getID() {
