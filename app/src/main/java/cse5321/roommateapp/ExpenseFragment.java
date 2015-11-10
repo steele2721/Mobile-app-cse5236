@@ -17,17 +17,26 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class ExpenseFragment extends Fragment implements OnClickListener{
-    private EditText etUsername;
-    private EditText etPassword;
-    private EditText etConfirm;
+    private ListView mListView;
+
+    public ExpenseFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v =  inflater.inflate(R.layout.fragment_expense_activity_summary, container, false);
+
+        ParseHelper.getExpenseList();
+        List<Expense> expenses = ExpenseList.get().getExpenseList();
+        mListView = (ListView) v.findViewById(R.id.expense_list_view);
+        mListView.setAdapter(new ExpenseListAdapter(getActivity(), R.id.expense_list_view, expenses));
         return v;
     }
 

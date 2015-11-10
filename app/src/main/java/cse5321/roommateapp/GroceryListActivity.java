@@ -35,7 +35,6 @@ public class GroceryListActivity extends AppCompatActivity {
             mGroceryListActivityFragment = new GroceryListActivityFragment();
             fm.beginTransaction().add(R.id.grocery_list_fragment, mGroceryListActivityFragment).commit();
         }
-
     }
 
     @Override

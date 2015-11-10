@@ -35,6 +35,7 @@ public class NewGroceryActivityFragment extends Fragment {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 String name = groceryName.getText().toString().trim();
                 String isFor = groceryIsFor.getText().toString().trim();
                 String strQuantity = groceryQuantity.getText().toString().trim();
@@ -62,6 +63,12 @@ public class NewGroceryActivityFragment extends Fragment {
                     ParseHelper.updateGroceryList(getContext(), item);
                     getActivity().finish();
                 }
+=======
+                // this is a test object! 
+                Grocery newItem = new Grocery("paper", "ryan", "ryan", 22);
+                GroceryList.get().addGrocery(newItem);
+                newItem.saveInBackground();
+>>>>>>> f5ff1838589f2d2000155d9542aa13b2b9fb5ccd
             }
         });
 
