@@ -23,5 +23,8 @@
     <string name="new_grocery_edittext_quantity_default">Quanitity</string>
     <string name="title_activity_new_grocery">Create New Grocery</string>
     <string name="title_activity_grovery">GroveryActivity</string>
+    <string name="new_grocery_price_text">Price</string>
+    <string name="new_grocery_isfor_text">Enter which roommate this is for</string>
+    <string name="title_activity_new_expense">IDK</string>
 
 </resources>

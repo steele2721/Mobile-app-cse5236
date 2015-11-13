@@ -2,11 +2,14 @@ package cse5321.roommateapp;
 
 import android.content.Context;
 
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
+ * List that holds the Expense objects
  * Created by ryan on 11/2/15.
  */
 public class ExpenseList {
@@ -37,10 +40,17 @@ public class ExpenseList {
             }
         }
         mExpenseList.add(expense);
-
     }
 
-    public void removeExpense(Expense expense, Context context) {
+    public void addGrocery(Expense expense) {
+        mExpenseList.add(expense);
+    }
+
+    public boolean contains(Expense expense) {
+        return mExpenseList.contains(expense);
+    }
+
+    public void removeExpense(Expense expense) {
         UserList users = UserList.get();
         for(User user : users){
             if (user.getName().equals(expense.getPaidBy())){
@@ -53,6 +63,15 @@ public class ExpenseList {
         mExpenseList.remove(expense);
     }
 
+    public void recreate(List<ParseObject> objects) {
+
+        mExpenseList = new ArrayList<>();
+        for (ParseObject object : objects) {
+            Expense expense = new Expense(object);
+            mExpenseList.add(expense);
+        }
+    }
+
     public Expense getExpense(UUID id) {
         for (Expense expense : mExpenseList) {
             if (expense.getID().equals(id)) {
@@ -60,13 +79,6 @@ public class ExpenseList {
             }
         }
         return null;
-    }
-
-    public void recreate(List<Expense> objects) {
-        mExpenseList = null;
-        for (Expense expense : objects) {
-            addExpense(expense);
-        }
     }
 
     public List<Expense> getExpenseList() {

@@ -3,11 +3,14 @@ package cse5321.roommateapp;
 import android.content.Context;
 
 
+import com.parse.ParseObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
+ * List that holds the grocery objects
  * Created by ryan on 10/25/15.
  */
 public class GroceryList {
@@ -38,9 +41,10 @@ public class GroceryList {
         mGroceryList.remove(grocery);
     }
 
-    public void recreate(List<Grocery> objects) {
-        mGroceryList = null;
-        for (Grocery grocery : objects) {
+    public void recreate(List<ParseObject> objects) {
+        mGroceryList = new ArrayList<>();
+        for (ParseObject object : objects) {
+            Grocery grocery = new Grocery(object);
             addGrocery(grocery);
         }
     }
