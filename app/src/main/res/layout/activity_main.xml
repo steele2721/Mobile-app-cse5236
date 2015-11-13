@@ -20,7 +20,22 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.24"></LinearLayout>
+        android:layout_weight="0.24">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grocery Activity"
+            android:id="@+id/grocery_activity" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Expense Activity"
+            android:id="@+id/expense_activity"
+            />
+
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="245dp"
@@ -33,7 +48,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/scrollView"
-            android:layout_gravity="center" />
+            android:layout_gravity="center" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="new_expense"
+                android:id="@+id/new_expense" />
+        </ScrollView>
     </FrameLayout>
 
     <FrameLayout
@@ -56,28 +78,7 @@
         android:layout_height="61dp"
         android:weightSum="1">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="new_expense"
-            android:id="@+id/new_expense"
-            android:layout_gravity="right" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Grocery Activity"
-            android:id="@+id/grocery_activity" />
-
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Expense Activity"
-        android:id="@+id/expense_activity"
-        android:onClick="ExpenseButtonClick"
-        />
 
 
 </LinearLayout>

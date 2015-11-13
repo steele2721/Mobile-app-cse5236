@@ -1,5 +1,6 @@
 package cse5321.roommateapp;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -38,11 +39,13 @@ public class MainActivity extends FragmentActivity{
         mnewExpenseButton = (Button)findViewById(R.id.new_expense);
         FragmentManager fm = getSupportFragmentManager();
 
+        final Context thisContext = this;
+
         // Inflates New Expense Activity when pressed
         mnewExpenseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, NewExpenseActivity.class);
+                Intent i = new Intent(thisContext, NewExpenseActivity.class);
                 startActivity(i);
             }
         });
@@ -55,14 +58,13 @@ public class MainActivity extends FragmentActivity{
             }
         });
 
-//        mgroceryActivityButton = (Button)findViewById(R.id.grocery_activity);
-//        mgroceryActivityButton.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v){
-//                Intent i = new Intent(MainActivity.this, ExpenseActivity.this);
-//                startActivity(i);
-//            }
-//        });
+        mgroceryActivityButton = (Button)findViewById(R.id.grocery_activity);
+        Button groceryButton = (Button) findViewById(R.id.grocery_activity);
+        groceryButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(thisContext, GroceryListActivity.class));
+            }
+        });
     }
 
     @Override
