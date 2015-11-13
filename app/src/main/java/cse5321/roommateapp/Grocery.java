@@ -64,7 +64,7 @@ public class Grocery extends ParseObject {
     }
 
     public void setQuantity(int quantity) {
-        mQuantity = quantity;
+        put("Quantity", quantity);
     }
 
     // getter methods
@@ -86,7 +86,7 @@ public class Grocery extends ParseObject {
     }
 
     public int getQuantity() {
-        return mQuantity;
+        return getInt("Quantity");
     }
 
     public static ParseQuery<Grocery> getQuery() {
