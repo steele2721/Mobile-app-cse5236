@@ -4,6 +4,7 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -17,11 +18,12 @@ public class Expense extends ParseObject{
     public Expense() {
     }
 
-    public Expense(String name, String paidBy, String type, double ammount) {
+    public Expense(String name, String paidBy, String type, double ammount, Date dueDate) {
         setName(name);
         setType(type);
         setPaidBy(paidBy);
         setAmount(ammount);
+        setDueDate(dueDate);
     }
 
     public Expense(ParseObject object) {
@@ -29,6 +31,7 @@ public class Expense extends ParseObject{
         setPaidBy(object.getString("PaidBy"));
         setType(object.getString("Type"));
         setAmount(object.getDouble("Amount"));
+        setDueDate(object.getDate("Date"));
     }
 
     public UUID getID() {
@@ -52,6 +55,11 @@ public class Expense extends ParseObject{
         put("Amount", price);
     }
 
+    public void setDueDate(Date dueDate) {
+        put("Date", dueDate);
+    }
+
+
     // getter methods
 
     public String getName() {
@@ -69,6 +77,11 @@ public class Expense extends ParseObject{
     public double getPrice() {
         return getInt("Amount");
     }
+
+    public Date getDueDate() {
+        return getDate("Date");
+    }
+
 
     public static ParseQuery<Expense> getQuery() {
         return ParseQuery.getQuery(Expense.class);
