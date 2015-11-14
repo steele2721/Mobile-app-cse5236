@@ -10,8 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * USed for populating the Expense listview
- * Created by ryan on 11/8/15.
+ * Adapter to help generate the expense list.
  */
 public class ExpenseListAdapter extends ArrayAdapter<Expense> {
 
@@ -36,12 +35,12 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense> {
 
         Expense item = getItem(position);
 
-        // TODO: add more fields!!
+        // TODO: add more fields!! Format to look nice!
         if (item != null) {
-            TextView groceryNameView = (TextView) v.findViewById(R.id.expense_item_name);
+            TextView expenseNameView = (TextView) v.findViewById(R.id.expense_item_name);
 
-            if (groceryNameView != null) {
-                groceryNameView.setText(item.getName());
+            if (expenseNameView != null) {
+                expenseNameView.setText(item.getName());
             }
         }
 

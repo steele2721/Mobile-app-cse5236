@@ -36,12 +36,13 @@ public class MainActivity extends FragmentActivity{
         ParseObject.registerSubclass(Grocery.class);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
         ParseInstallation.getCurrentInstallation().saveInBackground();
-        mnewExpenseButton = (Button)findViewById(R.id.new_expense);
+
         FragmentManager fm = getSupportFragmentManager();
 
         final Context thisContext = this;
 
         // Inflates New Expense Activity when pressed
+        mnewExpenseButton = (Button)findViewById(R.id.new_expense);
         mnewExpenseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,19 +51,19 @@ public class MainActivity extends FragmentActivity{
             }
         });
 
+        // Inflates Grocery Activity when pressed
         mgroceryActivityButton = (Button)findViewById(R.id.grocery_activity);
-        mgroceryActivityButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //Intent i = new Intent(MainActivity.this, Expe.this);
+        mgroceryActivityButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(thisContext, GroceryListActivity.class));
             }
         });
 
-        mgroceryActivityButton = (Button)findViewById(R.id.grocery_activity);
-        Button groceryButton = (Button) findViewById(R.id.grocery_activity);
-        groceryButton.setOnClickListener(new View.OnClickListener() {
+        // Inflates Expense Activity when pressed
+        mexpenseActivityButton = (Button) findViewById(R.id.expense_activity);
+        mexpenseActivityButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(thisContext, GroceryListActivity.class));
+                startActivity(new Intent(thisContext, ExpenseActivity.class));
             }
         });
     }

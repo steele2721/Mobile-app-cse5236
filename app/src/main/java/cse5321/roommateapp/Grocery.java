@@ -96,6 +96,8 @@ public class Grocery extends ParseObject {
         return getInt("Quantity");
     }
 
+    public String getParseId() { return getObjectId(); }
+
     public static ParseQuery<Grocery> getQuery() {
         return ParseQuery.getQuery(Grocery.class);
     }
