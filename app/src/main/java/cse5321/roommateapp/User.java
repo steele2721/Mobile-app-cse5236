@@ -1,7 +1,13 @@
 package cse5321.roommateapp;
 
+import android.content.Context;
+import android.widget.Toast;
+
+
 import com.parse.ParseClassName;
-import com.parse.ParseObject;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 import java.util.UUID;
 
@@ -9,12 +15,12 @@ import java.util.UUID;
  *  The User Object to be used with the application.
  * Created by John on 11/6/2015.
  */
-@ParseClassName("User")
-public class User extends ParseObject{
+public class User {
     private UUID mID;
+    private ParseUser user;
 
-    public User(String name) {
-        setName(name);
+    public User() {
+        user = new ParseUser();
     }
 
     public UUID getID() {
@@ -22,33 +28,67 @@ public class User extends ParseObject{
     }
 
     // setter methods
-    public void setName(String value) {
-        put("Name", value);
+    public void setUserName(String value) {
+        user.setUsername(value);
+    }
 
+    public void setPassword(String value) {
+        user.setPassword(value);
+    }
+
+    public void setFirstName(String value) {
+        user.put("FirstName", value);
+    }
+
+    public void setLastName(String value) {
+        user.put("LastName", value);
     }
 
     public void setAmountPaid(double value) {
-        put("AmountPaid", value);
-
+        user.put("AmountPaid", value);
     }
 
     public void setAmountOwed(double value) {
-        put("AmountOwed", value);
+        user.put("AmountOwed", value);
     }
 
     // getter methods
-    public String getName() {
-        return getString("Name");
+    public String getUserName() {
+        return user.getUsername();
+    }
 
+    public String getFirstName() {
+        return user.getString("FirstName");
+    }
+
+    public String getLastName() {
+        return user.getString("LastName");
     }
 
     public double getAmountPaid() {
-        return getInt("AmountPaid");
-
+        return user.getInt("AmountPaid");
     }
 
     public double getAmountOwed() {
-        return getInt("AmountOwed");
+        return user.getInt("AmountOwed");
+    }
+
+    public void saveUser(Context context) {
+        final Context c = context;
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    // Show a simple Toast message upon successful registration
+                    Toast.makeText(c,
+                            "Successfully Signed up, please log in.",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(c,
+                            "Sign up Error", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+        });
     }
 
 }

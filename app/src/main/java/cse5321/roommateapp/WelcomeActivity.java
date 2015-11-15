@@ -80,8 +80,9 @@ public class WelcomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_sign_out) {
+            ParseUser.logOut();
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

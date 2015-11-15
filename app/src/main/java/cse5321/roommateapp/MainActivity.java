@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseAnonymousUtils;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
@@ -15,7 +16,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         // Add your initialization code here
-
+        ParseObject.registerSubclass(Expense.class);
+        ParseObject.registerSubclass(Grocery.class);
         Parse.initialize(this, "0AccGSCjdEpz2LiGqe1ddTkbyaNKsSipSSDScuNF", "xi5bxKwxIF21mxRXowDbwNu8RecUcKJcOYV3TZsf");
         ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();

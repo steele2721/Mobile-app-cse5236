@@ -1,6 +1,7 @@
 package cse5321.roommateapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,8 @@ public class LoginSignupActivity extends Activity {
 
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
+        final Context thisContext = this;
+
         super.onCreate(savedInstanceState);
         // Get the view from main.xml
         setContentView(R.layout.loginsignup);
@@ -68,41 +71,12 @@ public class LoginSignupActivity extends Activity {
                         });
             }
         });
+
         // Sign up Button Click Listener
         signup.setOnClickListener(new OnClickListener() {
-
             public void onClick(View arg0) {
-                // Retrieve the text entered from the EditText
-                usernametxt = username.getText().toString();
-                passwordtxt = password.getText().toString();
-
-                // Force user to fill up the form
-                if (usernametxt.equals("") && passwordtxt.equals("")) {
-                    Toast.makeText(getApplicationContext(),
-                            "Please complete the sign up form",
-                            Toast.LENGTH_LONG).show();
-
-                } else {
-                    // Save new user data into Parse.com Data Storage
-                    ParseUser user = new ParseUser();
-                    user.setUsername(usernametxt);
-                    user.setPassword(passwordtxt);
-                    user.signUpInBackground(new SignUpCallback() {
-                        public void done(ParseException e) {
-                            if (e == null) {
-                                // Show a simple Toast message upon successful registration
-                                Toast.makeText(getApplicationContext(),
-                                        "Successfully Signed up, please log in.",
-                                        Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(),
-                                        "Sign up Error", Toast.LENGTH_LONG)
-                                        .show();
-                            }
-                        }
-                    });
-                }
-
+                Intent i = new Intent(thisContext, SignupActivity.class);
+                startActivity(i);
             }
         });
 

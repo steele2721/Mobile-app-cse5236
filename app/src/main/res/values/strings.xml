@@ -34,6 +34,21 @@
     <string name="Password">Password</string>
     <string name="LoginBtn">Log In</string>
     <string name="SignupBtn">Sign Up</string>
+    <string name="txtOr">Or</string>
+
+    <string name="new_username_edittext_default">Enter a Username</string>
+    <string name="new_username_text_default">Username: </string>
+    <string name="new_password_edittext_default">Enter a Password</string>
+    <string name="new_password_text_default">Password: </string>
+    <string name="reenter_password_edittext_default">Re-enter your password</string>
+    <string name="reenter_password_text_default">Re-enter Password: </string>
+    <string name="new_firstname_edittext_default">Enter Your First Name</string>
+    <string name="new_firstname_text_default">First Name: </string>
+    <string name="new_lastname_edittext_default">Enter Your Last Name</string>
+    <string name="new_lastname_text_default">Last Name: </string>
+    <string name="submit">Submit </string>
+
+
 
     <string-array name="dummy_user_names">
         <item>Ryan</item>

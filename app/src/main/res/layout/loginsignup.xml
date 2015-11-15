@@ -34,16 +34,26 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
-        android:text="@string/LoginBtn" />
+        android:text="@string/LoginBtn"
+        android:layout_centerHorizontal="true"/>
 
-    <Button
-        android:id="@+id/signup"
+    <TextView
+        android:id="@+id/txtOr"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login"
-        android:text="@string/SignupBtn" />
+        android:text="@string/txtOr"
+        android:gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtOr"
+        android:text="@string/SignupBtn"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

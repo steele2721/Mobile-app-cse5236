@@ -32,7 +32,8 @@ public class ExpenseList {
 
         UserList users = UserList.get();
         for(User user : users){
-            if (user.getName().equals(expense.getPaidBy())){
+            String name = user.getFirstName() + user.getLastName();
+            if (name.equals(expense.getPaidBy())){
                 user.setAmountPaid(user.getAmountPaid() + expense.getPrice());
             } else {
                 double amount = user.getAmountOwed();
@@ -53,7 +54,8 @@ public class ExpenseList {
     public void removeExpense(Expense expense) {
         UserList users = UserList.get();
         for(User user : users){
-            if (user.getName().equals(expense.getPaidBy())){
+            String name = user.getFirstName() + user.getLastName();
+            if (name.equals(expense.getPaidBy())){
                 user.setAmountPaid(user.getAmountPaid() - expense.getPrice());
             } else {
                 double amount = user.getAmountOwed();
