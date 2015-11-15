@@ -30,6 +30,10 @@
     <string name="title_activity_new_expense">IDK</string>
     <string name="new_grocery_select_isfor">Select who this grocery is for:</string>
     <string name="new_grocery_select_addedby">Slect who this grocery is being added by:</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="LoginBtn">Log In</string>
+    <string name="SignupBtn">Sign Up</string>
 
     <string-array name="dummy_user_names">
         <item>Ryan</item>
