@@ -58,7 +58,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ExpenseActivity"
+        <activity
+            android:name=".ExpenseActivity"
             android:label="@string/title_activity_expense"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
@@ -69,7 +70,6 @@
             android:label="@string/title_activity_new_expense"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-
         <activity
             android:name=".GroceryListActivity"
             android:label="@string/title_activity_grocery_list"
@@ -79,6 +79,10 @@
             android:name=".NewGroceryActivity"
             android:label="@string/title_activity_new_grocery"
             android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity android:name=".WelcomeActivity" >
+        </activity>
+        <activity android:name=".LoginSignupActivity" >
         </activity>
     </application>
 
