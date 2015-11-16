@@ -24,6 +24,10 @@ public class UserList extends ArrayList<User>{
         mUserList = new ArrayList<>();
     }
 
+    public List<User> getUserList() {
+        return mUserList;
+    }
+
     public void addUser(User user) {
         mUserList.add(user);
     }
@@ -32,9 +36,9 @@ public class UserList extends ArrayList<User>{
         mUserList.remove(user);
     }
 
-    public User getUser(UUID id) {
+    public User getUser(String userName) {
         for (User user : mUserList) {
-            if (user.getID().equals(id)) {
+            if (user.getUserName().equals(userName)) {
                 return user;
             }
         }

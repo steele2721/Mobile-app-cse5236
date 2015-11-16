@@ -1,23 +1,15 @@
 package cse5321.roommateapp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import cse5321.roommateapp.User;
-
-
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseUser;
-import com.parse.SignUpCallback;
 
 /**
- * Created by John on 11/15/2015.
+ * Activity for creating a new user.
  */
 public class SignupActivity extends Activity {
     // Declare Variables

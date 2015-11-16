@@ -23,6 +23,10 @@ public class User {
         user = new ParseUser();
     }
 
+    public User(ParseUser parseUser) {
+        user = parseUser;
+    }
+
     public UUID getID() {
         return mID;
     }
