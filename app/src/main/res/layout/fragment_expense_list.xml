@@ -8,36 +8,11 @@
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:showIn="@layout/activity_expense_list"
                 tools:context="cse5321.roommateapp.ExpenseListActivityFragment">
-    <Button
-        android:id="@+id/text_you_owe"
-        android:text="@string/expense_you_owe"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/amount_you_owe"
-        android:layout_toLeftOf="@+id/amount_you_owe"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center"
-        android:layout_alignBottom="@+id/amount_you_owe"
-        style="?android:attr/borderlessButtonStyle"/>
-    <Button
-        android:id="@+id/amount_you_owe"
-        android:text="@string/expense_you_owe"
-        android:layout_width="96dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:gravity="center"
-        style="?android:attr/borderlessButtonStyle"/>
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/expense_list_view"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/text_you_owe"/>
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>

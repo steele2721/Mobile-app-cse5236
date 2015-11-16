@@ -2,6 +2,7 @@ package cse5321.roommateapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,7 +18,9 @@ import com.parse.ParseUser;
 public class WelcomeActivity extends AppCompatActivity {
     private Button mexpenseActivityButton;
     private Button mgroceryActivityButton;
-    private Button mnewExpenseButton;
+    private ExpenseListActivityFragment mExpenseListActivityFragment;
+    private GroceryListActivityFragment mGroceryListActivityFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,32 +30,33 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Retrieve current user from Parse.com
         ParseUser currentUser = ParseUser.getCurrentUser();
-
         // Convert currentUser into String
         String struser = currentUser.getUsername().toString();
-
-
         ParseObject.registerSubclass(Expense.class);
         ParseObject.registerSubclass(Grocery.class);
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        final Context thisContext = this;
+        FragmentManager fmGroceries = getSupportFragmentManager();
+        FragmentManager fmExpenses = getSupportFragmentManager();
+        mGroceryListActivityFragment = (GroceryListActivityFragment) fmGroceries.findFragmentById(R.id.grocery_list_fragment);
+        mExpenseListActivityFragment = (ExpenseListActivityFragment) fmGroceries.findFragmentById(R.id.expense_list_fragment);
 
-        // Inflates New Expense Activity when pressed
-        mnewExpenseButton = (Button)findViewById(R.id.new_expense);
-        mnewExpenseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(thisContext, NewExpenseActivity.class);
-                startActivity(i);
-            }
-        });
+        if (mGroceryListActivityFragment == null) {
+            mGroceryListActivityFragment = new GroceryListActivityFragment();
+            fmExpenses.beginTransaction().add(R.id.grocery_list_fragment, mGroceryListActivityFragment).commit();
+        }
+
+        if (mExpenseListActivityFragment == null) {
+            mExpenseListActivityFragment = new ExpenseListActivityFragment();
+            fmExpenses.beginTransaction().add(R.id.expense_list_fragment, mExpenseListActivityFragment).commit();
+        }
+
 
         // Inflates Grocery Activity when pressed
         mgroceryActivityButton = (Button)findViewById(R.id.grocery_activity);
         mgroceryActivityButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(thisContext, GroceryListActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, GroceryListActivity.class));
             }
         });
 
@@ -60,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
         mexpenseActivityButton = (Button) findViewById(R.id.expense_activity);
         mexpenseActivityButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(thisContext, ExpenseActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, ExpenseActivity.class));
             }
         });
     }

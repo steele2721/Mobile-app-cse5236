@@ -26,7 +26,7 @@ public class ExpenseActivity extends AppCompatActivity {
 
         if (mExpenseListActivityFragment == null) {
             mExpenseListActivityFragment = new ExpenseListActivityFragment();
-            fm.beginTransaction().add(R.id.grocery_list_fragment, mExpenseListActivityFragment).commit();
+            fm.beginTransaction().add(R.id.expense_list_fragment, mExpenseListActivityFragment).commit();
         }
     }
 

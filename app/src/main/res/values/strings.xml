@@ -36,7 +36,8 @@
     <string name="LoginBtn">Log In</string>
     <string name="SignupBtn">Sign Up</string>
     <string name="txtOr">Or</string>
-
+    <string name="txtExpense">Expenses</string>
+    <string name="txtGroceries">Groceries</string>
     <string name="new_username_edittext_default">Enter a Username</string>
     <string name="new_username_text_default">Username: </string>
     <string name="new_password_edittext_default">Enter a Password</string>
