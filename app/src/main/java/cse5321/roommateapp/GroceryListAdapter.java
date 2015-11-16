@@ -38,13 +38,18 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
         // TODO: add more fields!! Format to look nice!
         if (item != null) {
             TextView groceryNameView = (TextView) v.findViewById(R.id.grocery_item_name);
+            TextView groceryQuantityView = (TextView) v.findViewById(R.id.grocery_item_quantity);
 
             if (groceryNameView != null) {
                 groceryNameView.setText(item.getName());
             }
+
+            if (groceryQuantityView != null) {
+                groceryQuantityView.setText(Integer.toString(item.getQuantity()));
+            }
         }
 
         return v;
-    }
 
+    }
 }
