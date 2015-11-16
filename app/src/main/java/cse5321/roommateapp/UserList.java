@@ -2,12 +2,15 @@ package cse5321.roommateapp;
 
 import android.content.Context;
 
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
- * Created by ryan on 11/2/15.
+ * List Class for Users. Holds all of the users.
  */
 public class UserList extends ArrayList<User>{
     public static UserList sUserList;
@@ -43,6 +46,14 @@ public class UserList extends ArrayList<User>{
             }
         }
         return null;
+    }
+
+    public void recreate (List<ParseUser> objects){
+        mUserList = new ArrayList<>();
+        for (ParseUser object : objects) {
+            User user = new User(object);
+            mUserList.add(user);
+        }
     }
 
     public int size (){
