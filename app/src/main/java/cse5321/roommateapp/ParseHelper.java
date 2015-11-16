@@ -16,6 +16,9 @@ import java.util.List;
  */
 public class ParseHelper {
 
+    /**
+     * Updates the Grocery List to the most current listing from parse.
+     */
     public static void getGroceryList (){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Groceries");
         Log.d(Context.class.toString(), "Starting Grocery Query.");
@@ -33,17 +36,27 @@ public class ParseHelper {
         });
     }
 
+    /**
+     * Addes a new grocery to parse, and updates an old grocery in parse.
+     * @param newGrocery the grocery to add or update.
+     */
     public static void updateGrocery(Grocery newGrocery){
         GroceryList list = GroceryList.get();
         list.addGrocery(newGrocery);
         newGrocery.saveInBackground();
     }
 
+    /**
+     * Removes a grocery from parse. The grocery to be removed must be selected from the lsit of current groceries.
+     * @param grocery the grocery to be removed
+     */
     public static void removeGrocery (Grocery grocery){
         grocery.deleteInBackground();
     }
 
-
+    /**
+     * Updates the Expense List to the most current listing from parse.
+     */
     public static void getExpenseList (){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Expenses");
         Log.d(Context.class.toString(), "Starting Expense Query.");
@@ -61,16 +74,27 @@ public class ParseHelper {
         });
     }
 
+    /**
+     * Addes a new expense to parse, and updates an old expense in parse.
+     * @param newExpense the grocery to add or update.
+     */
     public static void updateExpense (Expense newExpense){
         ExpenseList list = ExpenseList.get();
         list.addExpense(newExpense);
         newExpense.saveInBackground();
     }
 
+    /**
+     * Removes a expense from parse. The expense to be removed must be selected from the list of current expenses.
+     * @param expense the grocery to be removed
+     */
     public static void removeExpense (Expense expense){
         expense.deleteInBackground();
     }
 
+    /**
+     * Updates the the list of users from the current list on parse.
+     */
     public static void getUserList (){
         ParseQuery<ParseUser> query = ParseQuery.getQuery("User");
         Log.d(Context.class.toString(), "Starting User Query.");
@@ -88,6 +112,10 @@ public class ParseHelper {
         });
     }
 
+    /**
+     * Gets the current user and reaps it into a user object
+     * @return user containing the information of the current user.
+     */
     public static User getCurentUser (){
         return new User(ParseUser.getCurrentUser());
     }
