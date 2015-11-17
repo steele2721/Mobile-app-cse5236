@@ -1,6 +1,8 @@
 package cse5321.roommateapp;
 
 
+import android.util.Log;
+
 import com.parse.ParseUser;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class UserList extends ArrayList<User>{
      * @return the list of users.
      */
     public static UserList get() {
+        Log.d("User List", "User List .get Created");
         if (sUserList == null) {
             sUserList = new UserList();
         }
@@ -28,7 +31,7 @@ public class UserList extends ArrayList<User>{
      * Default constructor
      */
     public UserList() {
-        mUserList = new ArrayList<>();
+       mUserList = new ArrayList<User>();
     }
 
     /**
@@ -37,14 +40,6 @@ public class UserList extends ArrayList<User>{
      */
     public List<User> getUserList() {
         return mUserList;
-    }
-
-    /**
-     * Adds a user to the lsit
-     * @param user the user to be added to th list
-     */
-    public void addUser(User user) {
-        mUserList.add(user);
     }
 
     /**
@@ -61,8 +56,10 @@ public class UserList extends ArrayList<User>{
      */
     public void recreate (List<ParseUser> objects){
         mUserList = new ArrayList<>();
+        Log.d("User List", "Started Creating User List");
         for (ParseUser object : objects) {
             User user = new User(object);
+            Log.d("User List", "User Created User List");
             mUserList.add(user);
         }
     }

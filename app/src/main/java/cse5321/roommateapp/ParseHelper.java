@@ -96,13 +96,13 @@ public class ParseHelper {
      * Updates the the list of users from the current list on parse.
      */
     public static void getUserList (){
-        ParseQuery<ParseUser> query = ParseQuery.getQuery("User");
-        Log.d(Context.class.toString(), "Starting User Query.");
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        Log.d(Context.class.toString(), "");
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
                 if (e == null) {
-                    Log.d(Context.class.toString(), "Getting Expense List.");
+                    Log.d(Context.class.toString(), "Getting User List.");
                     UserList userList = UserList.get();
                     userList.recreate(objects);
                 } else {

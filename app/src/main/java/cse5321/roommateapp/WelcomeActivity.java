@@ -30,6 +30,8 @@ public class WelcomeActivity extends AppCompatActivity {
 //        String struser = currentUser.getUsername().toString();
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
+        ParseHelper.getUserList();
+
         FragmentManager fm = getSupportFragmentManager();
         mGroceryListActivityFragment = (GroceryListActivityFragment) fm.findFragmentById(R.id.grocery_list_fragment);
         mExpenseListActivityFragment = (ExpenseListActivityFragment) fm.findFragmentById(R.id.expense_list_fragment);

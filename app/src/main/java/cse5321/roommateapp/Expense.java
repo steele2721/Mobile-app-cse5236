@@ -9,7 +9,6 @@ import java.util.UUID;
 
 /**
  * The Expense Object to be used with the application.
- * Created by ryan on 11/2/15.
  */
 @ParseClassName("Expenses")
 public class Expense extends ParseObject{
@@ -43,7 +42,7 @@ public class Expense extends ParseObject{
      */
     public Expense(ParseObject object) {
         setObjectId(object.getObjectId());
-        setName(object.getString("objectID"));
+        setName(object.getString("Name"));
         setPaidBy(object.getString("PaidBy"));
         setType(object.getString("Type"));
         setAmount(object.getDouble("Amount"));

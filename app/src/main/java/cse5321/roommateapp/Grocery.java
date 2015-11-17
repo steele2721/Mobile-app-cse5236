@@ -12,7 +12,6 @@ import java.util.UUID;
 
 /**
  * The Grocery Object to be used with the application.
- * Created by ryan on 10/25/15.
  *
  * If Grocery.price == -1, price has not been set
  */

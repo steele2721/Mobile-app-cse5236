@@ -74,7 +74,6 @@ public class NewGroceryActivityFragment extends Fragment {
                     }
 
                     ParseHelper.updateGrocery(item);
-                    item.saveInBackground();
                     getActivity().finish();
                 }
             }

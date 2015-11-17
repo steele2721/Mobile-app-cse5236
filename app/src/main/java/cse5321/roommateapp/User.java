@@ -4,10 +4,9 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-
-import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import java.util.UUID;
@@ -153,10 +152,9 @@ public class User {
      * Updates the user information in parse
      */
     public void updateUser() {
-        user.signUpInBackground(new SignUpCallback() {
+        user.saveInBackground(new SaveCallback() {
             public void done(ParseException e) {
-                if (e == null) {
-                    // Show a simple Toast message upon successful registration
+                if (e != null) {
                     Log.d("User.updateUser", "User update successful.");
                 } else {
                     Log.d("User.updateUser", "User update failed.");

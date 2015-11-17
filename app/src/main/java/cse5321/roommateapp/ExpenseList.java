@@ -1,5 +1,7 @@
 package cse5321.roommateapp;
 
+import android.util.Log;
+
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -36,15 +38,20 @@ public class ExpenseList {
      */
     public void addExpense(Expense expense) {
 
+        Log.d("Expense", "User check 1");
+
         UserList users = UserList.get();
-        for(User user : users){
+        List<User> list = users.getUserList();
+        for (User user : list) {
+            Log.d("Expense", "User check");
             String name = user.getFirstName();
             if (name.equals(expense.getPaidBy())){
                 user.setAmountPaid(user.getAmountPaid() + expense.getPrice());
                 user.updateUser();
             } else {
                 double amount = user.getAmountOwed();
-                user.setAmountOwed(amount + (1 / users.size()) * expense.getPrice());
+                double amountOwed = amount + ((1 / users.size()) * expense.getPrice());
+                user.setAmountOwed(amountOwed);
                 user.updateUser();
             }
         }
@@ -60,7 +67,8 @@ public class ExpenseList {
     public void removeExpense(Expense expense) {
         if (expense.getObjectId() != null) {
             UserList users = UserList.get();
-            for (User user : users) {
+            List<User> list = users.getUserList();
+            for (User user : list) {
                 String name = user.getFirstName();
                 if (name.equals(expense.getPaidBy())) {
                     user.setAmountPaid(user.getAmountPaid() - expense.getPrice());
