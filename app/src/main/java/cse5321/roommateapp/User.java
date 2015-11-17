@@ -34,6 +34,10 @@ public class User {
         user = parseUser;
     }
 
+    public ParseUser getParseUser() {
+        return user;
+    }
+
     // setter methods
 
     /**
@@ -152,14 +156,6 @@ public class User {
      * Updates the user information in parse
      */
     public void updateUser() {
-        user.saveInBackground(new SaveCallback() {
-            public void done(ParseException e) {
-                if (e != null) {
-                    Log.d("User.updateUser", "User update successful.");
-                } else {
-                    Log.d("User.updateUser", "User update failed.");
-                }
-            }
-        });
+        user.saveInBackground();
     }
 }

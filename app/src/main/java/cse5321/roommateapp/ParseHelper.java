@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.parse.FindCallback;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -43,6 +44,15 @@ public class ParseHelper {
     public static void updateGrocery(Grocery newGrocery){
         GroceryList list = GroceryList.get();
         list.addGrocery(newGrocery);
+
+        UserList users = UserList.get();
+        List<User> userList = users.getUserList();
+        ParseACL groupACL = new ParseACL();
+        for (User user : userList) {
+            groupACL.setReadAccess(user.getParseUser(), true);
+            groupACL.setWriteAccess(user.getParseUser(), true);
+        }
+        newGrocery.setACL(groupACL);
         newGrocery.saveInBackground();
     }
 
@@ -81,6 +91,15 @@ public class ParseHelper {
     public static void updateExpense (Expense newExpense){
         ExpenseList list = ExpenseList.get();
         list.addExpense(newExpense);
+
+        UserList users = UserList.get();
+        List<User> userList = users.getUserList();
+        ParseACL groupACL = new ParseACL();
+        for (User user : userList) {
+            groupACL.setReadAccess(user.getParseUser(), true);
+            groupACL.setWriteAccess(user.getParseUser(), true);
+        }
+        newExpense.setACL(groupACL);
         newExpense.saveInBackground();
     }
 

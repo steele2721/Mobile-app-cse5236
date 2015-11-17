@@ -1,8 +1,10 @@
 package cse5321.roommateapp;
 
 import android.content.Context;
+import android.util.Log;
 
 
+import com.parse.ParseACL;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ public class GroceryList {
     }
 
     /**
-     * Adds a new grocery to the list
+     * Adds a new grocery to the list, and sets the ACL for all users.
      * @param grocery the new grocery to be added
      */
     public void addGrocery(Grocery grocery) {

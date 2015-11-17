@@ -2,6 +2,7 @@ package cse5321.roommateapp;
 
 import android.util.Log;
 
+import com.parse.ParseACL;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
@@ -33,28 +34,10 @@ public class ExpenseList {
     }
 
     /**
-     * Takes an expense to be added to the list, and splits the cost amoung all users.
+     * Takes an expense to be added to the list, and sets the ACL for all users.
      * @param expense The Expense to be added to the list
      */
     public void addExpense(Expense expense) {
-
-        Log.d("Expense", "User check 1");
-
-        UserList users = UserList.get();
-        List<User> list = users.getUserList();
-        for (User user : list) {
-            Log.d("Expense", "User check");
-            String name = user.getFirstName();
-            if (name.equals(expense.getPaidBy())){
-                user.setAmountPaid(user.getAmountPaid() + expense.getPrice());
-                user.updateUser();
-            } else {
-                double amount = user.getAmountOwed();
-                double amountOwed = amount + ((1 / users.size()) * expense.getPrice());
-                user.setAmountOwed(amountOwed);
-                user.updateUser();
-            }
-        }
         mExpenseList.add(expense);
     }
 
@@ -66,19 +49,6 @@ public class ExpenseList {
      */
     public void removeExpense(Expense expense) {
         if (expense.getObjectId() != null) {
-            UserList users = UserList.get();
-            List<User> list = users.getUserList();
-            for (User user : list) {
-                String name = user.getFirstName();
-                if (name.equals(expense.getPaidBy())) {
-                    user.setAmountPaid(user.getAmountPaid() - expense.getPrice());
-                    user.updateUser();
-                } else {
-                    double amount = user.getAmountOwed();
-                    user.setAmountOwed(amount - (1 / users.size()) * expense.getPrice());
-                    user.updateUser();
-                }
-            }
             mExpenseList.remove(expense);
             expense.deleteInBackground();
         }
@@ -91,10 +61,22 @@ public class ExpenseList {
     public void recreate(List<ParseObject> objects) {
 
         mExpenseList = new ArrayList<>();
+        double listSize = UserList.get().size();
+        User user = ParseHelper.getCurentUser();
+        double amountOwed = 0;
+        double amountPaid = 0;
         for (ParseObject object : objects) {
             Expense expense = new Expense(object);
+            if (user.getFirstName().equals(expense.getPaidBy())){
+                amountPaid = amountPaid + expense.getPrice();
+            } else {
+                amountOwed = amountOwed + (1 / listSize) * expense.getPrice();
+            }
             mExpenseList.add(expense);
         }
+        user.setAmountOwed(amountOwed);
+        user.setAmountPaid(amountPaid);
+        user.updateUser();
     }
 
     /**
