@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,8 +33,10 @@ public class GroceryListActivityFragment extends Fragment {
         ParseHelper.getGroceryList();
         mGroceries = GroceryList.get().getGroceryList();
         mListView = (ListView) v.findViewById(R.id.grocery_list_view);
+
         mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
         mListView.setAdapter(mAdapter);
+
         return v;
     }
 
