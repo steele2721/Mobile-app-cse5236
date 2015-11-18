@@ -51,7 +51,8 @@ public class GroceryList {
      *  @param grocery the grocery to be removed
      */
     public void removeGrocery(Grocery grocery) {
-        Log.d("GroceryList", "Removed: " + mGroceryList.remove(grocery));
+        Log.d("GroceryList", "Removed: " + grocery.getName());
+        mGroceryList.remove(grocery);
         grocery.deleteInBackground();
 
     }

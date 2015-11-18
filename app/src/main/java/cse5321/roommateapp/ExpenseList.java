@@ -48,10 +48,8 @@ public class ExpenseList {
      *  @param expense the expense to be removed
      */
     public void removeExpense(Expense expense) {
-        if (expense.getObjectId() != null) {
-            mExpenseList.remove(expense);
-            expense.deleteInBackground();
-        }
+        mExpenseList.remove(expense);
+        expense.deleteInBackground();
     }
 
     /**
@@ -68,7 +66,7 @@ public class ExpenseList {
         for (ParseObject object : objects) {
             Expense expense = new Expense(object);
             if (user.getFirstName().equals(expense.getPaidBy())){
-                amountPaid = amountPaid + expense.getPrice();
+                amountOwed = amountPaid - ((listSize - 1) / listSize) * expense.getPrice();
             } else {
                 amountOwed = amountOwed + (1 / listSize) * expense.getPrice();
             }

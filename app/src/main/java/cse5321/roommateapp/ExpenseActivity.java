@@ -8,18 +8,35 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+
+import java.text.NumberFormat;
 
 /**
  * Activity that displays the ExpenseList
  */
 public class ExpenseActivity extends AppCompatActivity {
     private ExpenseListActivityFragment mExpenseListActivityFragment;
+    Button summaryName;
+    Button summaryAmount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ParseHelper.getExpenseList();
+
+
+        summaryName = (Button) findViewById(R.id.text_you_owe);
+        summaryAmount = (Button) findViewById(R.id.amount_you_owe);
+        User user = ParseHelper.getCurentUser();
+        String name = user.getFirstName() + " " + user.getLastName();
+        summaryName.setText(name);
+        double amount = user.getAmountOwed();
+        summaryAmount.setText(NumberFormat.getCurrencyInstance().format(amount));
+
 
         FragmentManager fm = getSupportFragmentManager();
         mExpenseListActivityFragment = (ExpenseListActivityFragment) fm.findFragmentById(R.id.expense_list_fragment);
