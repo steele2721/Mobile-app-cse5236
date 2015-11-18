@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class GroceryListActivityFragment extends Fragment {
 
         mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
         mListView.setAdapter(mAdapter);
+        mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         return v;
     }
@@ -47,6 +49,13 @@ public class GroceryListActivityFragment extends Fragment {
         mListView = (ListView) getActivity().findViewById(R.id.grocery_list_view);
         mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
         mListView.setAdapter(mAdapter);
-                Toast.makeText(getContext(), "Refreshing grocery list", Toast.LENGTH_SHORT).show();
+    }
+
+    public void removeCheckedGroceries() {
+        for (Grocery g : mAdapter.getCheckedPositions()) {
+            GroceryList.get().removeGrocery(g);
+        }
+
+        updateListView();
     }
 }

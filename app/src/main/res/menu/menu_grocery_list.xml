@@ -9,6 +9,11 @@
 
       <item android:id="@+id/action_refresh_grocery_list"
             android:title="Refresh"
+            android:orderInCategory="300"
+            app:showAsAction="never"/>
+
+      <item android:id="@+id/action_remove_checked_grocery"
+            android:title="Remove checked"
             android:orderInCategory="200"
             app:showAsAction="never"/>
 </menu>

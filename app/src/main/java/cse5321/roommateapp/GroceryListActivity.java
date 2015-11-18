@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /**
  * Activity that displays the GroceryList
@@ -47,6 +48,11 @@ public class GroceryListActivity extends AppCompatActivity {
 
             case R.id.action_refresh_grocery_list:
                 mGroceryListActivityFragment.updateListView();
+                Toast.makeText(GroceryListActivity.this, "Refreshing grocery list", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.action_remove_checked_grocery:
+                mGroceryListActivityFragment.removeCheckedGroceries();
                 return true;
 
             default:

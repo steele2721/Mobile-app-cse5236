@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
@@ -22,6 +24,7 @@ import java.util.Locale;
  * Created by ryan on 11/8/15.
  */
 public class GroceryListAdapter extends ArrayAdapter<Grocery> {
+    private ArrayList<Grocery> mCheckedItems;
 
     public GroceryListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
@@ -52,7 +55,6 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
             groceryNameView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("Click", "Thanks for clicking me!");
                     AlertDialog.Builder summaryBuilder = new AlertDialog.Builder(v.getContext());
 
                     if (item.getPrice() == -1.0) {
@@ -73,7 +75,7 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
                     summaryBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Log.d("Dialog", "You clicked the positive button!");
+                            // doesn't need to do anything!
                         }
                     });
 
@@ -86,10 +88,13 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
 
             // set up checkboxes
             final CheckBox groceryCheckBox = (CheckBox) v.findViewById(R.id.grocery_item_checkbox);
-            groceryCheckBox.setOnClickListener(new View.OnClickListener() {
+
+            groceryCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View v) {
-                    groceryCheckBox.setChecked(groceryCheckBox.isChecked());
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        //mCheckedItems.add(item);
+                    }
                 }
             });
 
@@ -104,5 +109,9 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
 
         return v;
 
+    }
+
+    public ArrayList<Grocery> getCheckedPositions() {
+        return mCheckedItems;
     }
 }
