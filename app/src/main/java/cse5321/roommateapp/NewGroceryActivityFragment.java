@@ -2,8 +2,12 @@ package cse5321.roommateapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.ParcelFormatException;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +17,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Fragment for creating a new grocery item
@@ -36,16 +43,6 @@ public class NewGroceryActivityFragment extends Fragment {
         final Spinner groceryIsFor = (Spinner) view.findViewById(R.id.new_grocery_isfor);
         final Spinner groceryAddedBy = (Spinner) view.findViewById(R.id.new_grocery_addedBy);
 
-
-//        ArrayAdapter<CharSequence> isForAdapter = ArrayAdapter.createFromResource(getContext(), R.array.dummy_user_names, R.layout.choose_user_spinner);
-//        isForAdapter.setDropDownViewResource(R.layout.choose_user_spinner);
-//
-//        ArrayAdapter<CharSequence> addedByAdapter = ArrayAdapter.createFromResource(getContext(), R.array.dummy_user_names, R.layout.choose_user_spinner);
-//        addedByAdapter.setDropDownViewResource(R.layout.choose_user_spinner);
-
-//        groceryIsFor.setAdapter(isForAdapter);
-//        groceryAddedBy.setAdapter(addedByAdapter);
-
         List<User> userList = UserList.get().getUserList();
         String[] users = new String[userList.size()];
         for (int i = 0; i < userList.size(); i++) {
@@ -55,7 +52,36 @@ public class NewGroceryActivityFragment extends Fragment {
         groceryIsFor.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.choose_user_spinner, users));
         groceryAddedBy.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.choose_user_spinner, users));
 
+        groceryPrice.addTextChangedListener(new TextWatcher() {
+            String priceCurrent = "";
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // no op
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().equals(priceCurrent)){
+                    groceryPrice.removeTextChangedListener(this);
+
+                    String cleanString = s.toString().replaceAll("[$,.]", "");
+
+                    double parsed = Double.parseDouble(cleanString);
+                    String formatted = NumberFormat.getCurrencyInstance().format((parsed/100));
+
+                    priceCurrent = formatted;
+                    groceryPrice.setText(formatted);
+                    groceryPrice.setSelection(formatted.length());
+
+                    groceryPrice.addTextChangedListener(this);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // no op
+            }
+        });
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +90,7 @@ public class NewGroceryActivityFragment extends Fragment {
                 String isFor = groceryIsFor.getSelectedItem().toString().trim();
                 String addedBy = groceryAddedBy.getSelectedItem().toString().trim();
                 String strQuantity = groceryQuantity.getText().toString().trim();
-                String strPrice = groceryPrice.getText().toString().trim();
+                String strPrice = groceryPrice.getText().toString().trim().substring(1);
 
                 if (name.isEmpty()) {
                     Toast.makeText(getContext(), "Please enter the name of this grocery item!", Toast.LENGTH_SHORT).show();
@@ -78,7 +104,13 @@ public class NewGroceryActivityFragment extends Fragment {
                     Grocery item;
 
                     if (!strPrice.isEmpty()) {
-                        double price = Double.parseDouble(strPrice);
+                        double price;
+                        try {
+                            price = NumberFormat.getInstance(Locale.getDefault()).parse(strPrice).doubleValue();
+                        } catch (ParseException e) {
+                            Log.d("ParseError", "Price couldn't be parsed. Setting it to default.");
+                            price = 0.0;
+                        }
                         item = new Grocery(name, addedBy, isFor, price, quantity);
                     } else {
                         item = new Grocery(name, addedBy, isFor, quantity);

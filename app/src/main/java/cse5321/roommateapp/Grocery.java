@@ -153,7 +153,7 @@ public class Grocery extends ParseObject {
      * @return the price the grocery
      */
     public double getPrice() {
-        return getInt("Price");
+        return getDouble("Price");
     }
 
     /**
