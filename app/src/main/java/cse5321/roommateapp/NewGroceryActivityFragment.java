@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.List;
+
 /**
  * Fragment for creating a new grocery item
  */
@@ -35,14 +37,23 @@ public class NewGroceryActivityFragment extends Fragment {
         final Spinner groceryAddedBy = (Spinner) view.findViewById(R.id.new_grocery_addedBy);
 
 
-        ArrayAdapter<CharSequence> isForAdapter = ArrayAdapter.createFromResource(getContext(), R.array.dummy_user_names, R.layout.choose_user_spinner);
-        isForAdapter.setDropDownViewResource(R.layout.choose_user_spinner);
+//        ArrayAdapter<CharSequence> isForAdapter = ArrayAdapter.createFromResource(getContext(), R.array.dummy_user_names, R.layout.choose_user_spinner);
+//        isForAdapter.setDropDownViewResource(R.layout.choose_user_spinner);
+//
+//        ArrayAdapter<CharSequence> addedByAdapter = ArrayAdapter.createFromResource(getContext(), R.array.dummy_user_names, R.layout.choose_user_spinner);
+//        addedByAdapter.setDropDownViewResource(R.layout.choose_user_spinner);
 
-        ArrayAdapter<CharSequence> addedByAdapter = ArrayAdapter.createFromResource(getContext(), R.array.dummy_user_names, R.layout.choose_user_spinner);
-        addedByAdapter.setDropDownViewResource(R.layout.choose_user_spinner);
+//        groceryIsFor.setAdapter(isForAdapter);
+//        groceryAddedBy.setAdapter(addedByAdapter);
 
-        groceryIsFor.setAdapter(isForAdapter);
-        groceryAddedBy.setAdapter(addedByAdapter);
+        List<User> userList = UserList.get().getUserList();
+        String[] users = new String[userList.size()];
+        for (int i = 0; i < userList.size(); i++) {
+            users[i] = userList.get(i).getFirstName();
+        }
+
+        groceryIsFor.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.choose_user_spinner, users));
+        groceryAddedBy.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.choose_user_spinner, users));
 
 
 
