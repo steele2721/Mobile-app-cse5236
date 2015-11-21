@@ -16,6 +16,7 @@ import com.parse.ParseUser;
 public class WelcomeActivity extends AppCompatActivity {
     private ExpenseListActivityFragment mExpenseListActivityFragment;
     private GroceryListActivityFragment mGroceryListActivityFragment;
+    private LoginSignupActivity mLoginSignupActivity;
 
 
     @Override
@@ -81,7 +82,8 @@ public class WelcomeActivity extends AppCompatActivity {
             //noinspection SimplifiableIfStatement
             case R.id.action_sign_out:
                 ParseUser.logOut();
-                finish();
+                Intent intent = new Intent(WelcomeActivity.this, LoginSignupActivity.class);
+                startActivity(intent);
                 return true;
             case R.id.action_refresh:
                 mGroceryListActivityFragment.updateListView();

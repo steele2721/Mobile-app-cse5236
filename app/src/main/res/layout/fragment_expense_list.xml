@@ -9,10 +9,14 @@
                 tools:showIn="@layout/activity_expense_list"
                 tools:context="cse5321.roommateapp.ExpenseListActivityFragment">
 
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/expense_list_view"
+        android:clickable="true"
+        android:focusable="false"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 </RelativeLayout>
