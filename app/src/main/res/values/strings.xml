@@ -49,13 +49,10 @@
     <string name="new_lastname_edittext_default">Enter Your Last Name</string>
     <string name="new_lastname_text_default">Last Name: </string>
     <string name="submit">Submit </string>
+    <string name="new_expense_edittext_default">Enter expense item name</string>
+    <string name="new_expense_select_isfor">Select who paid this expense:</string>
+    <string name="new_date_text">Date</string>
 
 
-
-    <string-array name="dummy_user_names">
-        <item>Ryan</item>
-        <item>Robert</item>
-        <item>John</item>
-    </string-array>
 
 </resources>
