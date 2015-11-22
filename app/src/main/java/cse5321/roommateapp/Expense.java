@@ -96,9 +96,7 @@ public class Expense extends ParseObject{
      * @param dueDate the due date to be set
      */
     public void setDueDate(String dueDate) {
-        if (dueDate != null){
             put("Date", dueDate);
-        }
     }
 
 

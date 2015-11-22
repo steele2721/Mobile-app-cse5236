@@ -51,6 +51,7 @@
     <string name="submit">Submit </string>
     <string name="new_expense_edittext_default">Enter expense item name</string>
     <string name="new_expense_select_isfor">Select who paid this expense:</string>
+    <string name="new_expense_select_type">Select type of expense:</string>
     <string name="new_date_text">Date</string>
 
 
