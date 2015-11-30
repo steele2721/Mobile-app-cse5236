@@ -82,6 +82,10 @@ public class NewGroceryActivityFragment extends Fragment {
             }
         });
 
+        if (savedInstanceState.size() > 0) {
+            groceryName.setText(savedInstanceState.getString("EXTRA_GROCERY_NAME"));
+        }
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,21 +3,27 @@ package cse5321.roommateapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
-
+import java.util.Locale;
 
 /**
- * Adapter for populating the Grocery List views.
+ * Created by ryan on 11/8/15.
  */
 public class GroceryListAdapter extends ArrayAdapter<Grocery> {
     private ArrayList<Grocery> mCheckedItems;
@@ -75,6 +81,27 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
                         }
                     });
 
+                    summaryBuilder.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO: make it so that you can edit this item
+                            Intent i = new Intent(getContext(), NewGroceryActivity.class);
+                            Bundle b = new Bundle();
+                            b.putString("EXTRA_GROCERY_NAME", item.getName());
+                            b.putString("EXTRA_GROCERY_ADDEDBY", item.getAddedBy());
+                            b.putString("EXTRA_GROCERY_ISFOR", item.getIsFor());
+                            b.putInt("EXTRA_GROCERY_QUANTITY", item.getQuantity());
+                            b.putString("EXTRA_GROCERY_ID", item.getID().toString());
+
+                            if (item.getPrice() != -1) {
+                                b.putDouble("EXTRA_GROCERY_PRICE", item.getPrice());
+                            }
+
+                            i.putExtra("EXTRA_GROCERY", b);
+                            getContext().startActivity(i);
+                        }
+                    });
+
                     AlertDialog summaryDialog = summaryBuilder.create();
                     summaryDialog.show();
                 }
@@ -97,11 +124,14 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
             if (groceryNameView != null) {
                 groceryNameView.setText(item.getName());
             }
+
             if (groceryQuantityView != null) {
                 groceryQuantityView.setText(Integer.toString(item.getQuantity()));
             }
         }
+
         return v;
+
     }
 
     public ArrayList<Grocery> getCheckedPositions() {
