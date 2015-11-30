@@ -87,6 +87,17 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
                             // TODO: make it so that you can edit this item
                             Intent i = new Intent(getContext(), NewGroceryActivity.class);
                             Bundle b = new Bundle();
+                            b.putString("EXTRA_GROCERY_NAME", item.getName());
+                            b.putString("EXTRA_GROCERY_ADDEDBY", item.getAddedBy());
+                            b.putString("EXTRA_GROCERY_ISFOR", item.getIsFor());
+                            b.putInt("EXTRA_GROCERY_QUANTITY", item.getQuantity());
+                            b.putString("EXTRA_GROCERY_ID", item.getID().toString());
+
+                            if (item.getPrice() != -1) {
+                                b.putDouble("EXTRA_GROCERY_PRICE", item.getPrice());
+                            }
+
+                            i.putExtra("EXTRA_GROCERY", b);
                             getContext().startActivity(i);
                         }
                     });
