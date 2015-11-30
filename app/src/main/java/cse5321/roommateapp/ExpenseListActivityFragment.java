@@ -27,7 +27,6 @@ public class ExpenseListActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_expense_list, container, false);
 
-        ParseHelper.getExpenseList();
         mExpenses = ExpenseList.get().getExpenseList();
         mListView = (ListView) v.findViewById(R.id.expense_list_view);
         mAdapter = new ExpenseListAdapter(getActivity(), R.id.expense_list_view, mExpenses);
@@ -41,6 +40,5 @@ public class ExpenseListActivityFragment extends Fragment {
         mListView = (ListView) getActivity().findViewById(R.id.expense_list_view);
         mAdapter = new ExpenseListAdapter(getActivity(), R.id.expense_list_view, mExpenses);
         mListView.setAdapter(mAdapter);
-        Toast.makeText(getContext(), "Refreshing expense list", Toast.LENGTH_SHORT).show();
     }
 }

@@ -3,22 +3,19 @@ package cse5321.roommateapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
+
 
 /**
  * Created by ryan on 11/8/15.
@@ -101,14 +98,11 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
             if (groceryNameView != null) {
                 groceryNameView.setText(item.getName());
             }
-
             if (groceryQuantityView != null) {
                 groceryQuantityView.setText(Integer.toString(item.getQuantity()));
             }
         }
-
         return v;
-
     }
 
     public ArrayList<Grocery> getCheckedPositions() {

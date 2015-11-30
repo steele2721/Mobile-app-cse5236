@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -26,8 +27,6 @@ public class ExpenseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_expense_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ParseHelper.getExpenseList();
-
 
         summaryName = (Button) findViewById(R.id.text_you_owe);
         summaryAmount = (Button) findViewById(R.id.amount_you_owe);
@@ -63,6 +62,7 @@ public class ExpenseActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_refresh_expense_list:
+                Toast.makeText(this, "Refreshing expense list", Toast.LENGTH_SHORT).show();
                 mExpenseListActivityFragment.updateListView();
                 return true;
 

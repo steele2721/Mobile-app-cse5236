@@ -1,6 +1,5 @@
 package cse5321.roommateapp;
 
-
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.parse.ParseInstallation;
 import com.parse.ParseUser;
@@ -16,7 +16,6 @@ import com.parse.ParseUser;
 public class WelcomeActivity extends AppCompatActivity {
     private ExpenseListActivityFragment mExpenseListActivityFragment;
     private GroceryListActivityFragment mGroceryListActivityFragment;
-    private LoginSignupActivity mLoginSignupActivity;
 
 
     @Override
@@ -25,12 +24,15 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        // Retrieve current user from Parse.com
-//        ParseUser currentUser = ParseUser.getCurrentUser();
-        // Convert currentUser into String
-//        String struser = currentUser.getUsername().toString();
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        String userName = currentUser.get("FirstName").toString();
+        userName = userName + " " + currentUser.get("LastName").toString();
+
+        Toast.makeText(WelcomeActivity.this, "Logged in as " + userName, Toast.LENGTH_SHORT).show();
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
+        ParseHelper.getExpenseList();
+        ParseHelper.getGroceryList();
         ParseHelper.getUserList();
 
         FragmentManager fm = getSupportFragmentManager();
@@ -86,6 +88,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_refresh:
+                Toast.makeText(this, "Refreshing expense and grocery lists", Toast.LENGTH_SHORT).show();
                 mGroceryListActivityFragment.updateListView();
                 mExpenseListActivityFragment.updateListView();
                 return true;

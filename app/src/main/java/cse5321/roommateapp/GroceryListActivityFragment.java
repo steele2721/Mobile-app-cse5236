@@ -30,15 +30,11 @@ public class GroceryListActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_grocery_list, container, false);
-
-        ParseHelper.getGroceryList();
         mGroceries = GroceryList.get().getGroceryList();
         mListView = (ListView) v.findViewById(R.id.grocery_list_view);
-
         mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
         mListView.setAdapter(mAdapter);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
         return v;
     }
 
@@ -55,7 +51,6 @@ public class GroceryListActivityFragment extends Fragment {
         for (Grocery g : mAdapter.getCheckedPositions()) {
             GroceryList.get().removeGrocery(g);
         }
-
         updateListView();
     }
 }
