@@ -2,7 +2,6 @@ package cse5321.roommateapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.ParcelFormatException;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
@@ -49,8 +48,8 @@ public class NewGroceryActivityFragment extends Fragment {
             users[i] = userList.get(i).getFirstName();
         }
 
-        groceryIsFor.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.choose_user_spinner, users));
-        groceryAddedBy.setAdapter(new ArrayAdapter<String>(getContext(), R.layout.choose_user_spinner, users));
+        groceryIsFor.setAdapter(new ArrayAdapter<>(getContext(), R.layout.choose_user_spinner, users));
+        groceryAddedBy.setAdapter(new ArrayAdapter<>(getContext(), R.layout.choose_user_spinner, users));
 
         groceryPrice.addTextChangedListener(new TextWatcher() {
             String priceCurrent = "";
@@ -116,7 +115,7 @@ public class NewGroceryActivityFragment extends Fragment {
                         item = new Grocery(name, addedBy, isFor, quantity);
                     }
 
-                    ParseHelper.updateGrocery(item);
+                    ParseHelper.addGrocery(item);
                     getActivity().finish();
                 }
             }
@@ -128,7 +127,6 @@ public class NewGroceryActivityFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {
-            return;
         }
     }
 }

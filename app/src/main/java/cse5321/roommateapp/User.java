@@ -1,22 +1,17 @@
 package cse5321.roommateapp;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
-
-import java.util.UUID;
 
 /**
  *  The User Object to be used with the application.
  * Created by John on 11/6/2015.
  */
 public class User {
-    private UUID mID;
     private ParseUser user;
 
     /**
@@ -72,13 +67,6 @@ public class User {
         user.put("LastName", value);
     }
 
-    /**
-     * sets the amount that the user has paid
-     * @param value amount that the user has paid
-     */
-    public void setAmountPaid(double value) {
-        user.put("AmountPaid", value);
-    }
 
     /**
      * sets the amount that the user has borrowed
@@ -114,13 +102,6 @@ public class User {
         return user.getString("LastName");
     }
 
-    /**
-     * gets the amount that the user has paid
-     * @return amount that the user has paid
-     */
-    public double getAmountPaid() {
-        return user.getInt("AmountPaid");
-    }
 
     /**
      * gets the amount that the user has borrowed

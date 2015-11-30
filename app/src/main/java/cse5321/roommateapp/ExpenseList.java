@@ -1,7 +1,5 @@
 package cse5321.roommateapp;
 
-import android.util.Log;
-
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 
@@ -49,7 +47,6 @@ public class ExpenseList {
      */
     public void removeExpense(Expense expense) {
         mExpenseList.remove(expense);
-        expense.deleteInBackground();
     }
 
     /**
@@ -60,20 +57,29 @@ public class ExpenseList {
 
         mExpenseList = new ArrayList<>();
         double listSize = UserList.get().size();
-        User user = ParseHelper.getCurentUser();
+        User user = ParseHelper.getCurrentUser();
         double amountOwed = 0;
-        double amountPaid = 0;
+
+        UserList users = UserList.get();
+        List<User> userList = users.getUserList();
         for (ParseObject object : objects) {
             Expense expense = new Expense(object);
             if (user.getFirstName().equals(expense.getPaidBy())){
-                amountOwed = amountPaid - ((listSize - 1) / listSize) * expense.getPrice();
+                amountOwed = amountOwed - ((listSize - 1) / listSize) * expense.getPrice();
             } else {
                 amountOwed = amountOwed + (1 / listSize) * expense.getPrice();
             }
-            mExpenseList.add(expense);
+            addExpense(expense);
+
+            ParseACL groupACL = new ParseACL();
+            for (User u : userList) {
+                groupACL.setReadAccess(u.getParseUser(), true);
+                groupACL.setWriteAccess(u.getParseUser(), true);
+            }
+            object.setACL(groupACL);
+            object.saveInBackground();
         }
         user.setAmountOwed(amountOwed);
-        user.setAmountPaid(amountPaid);
         user.updateUser();
     }
 

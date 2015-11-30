@@ -11,14 +11,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 
 /**
- * Created by ryan on 11/8/15.
+ * Adapter for populating the Grocery List views.
  */
 public class GroceryListAdapter extends ArrayAdapter<Grocery> {
     private ArrayList<Grocery> mCheckedItems;

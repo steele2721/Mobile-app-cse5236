@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -30,7 +29,7 @@ public class ExpenseActivity extends AppCompatActivity {
 
         summaryName = (Button) findViewById(R.id.text_you_owe);
         summaryAmount = (Button) findViewById(R.id.amount_you_owe);
-        User user = ParseHelper.getCurentUser();
+        User user = ParseHelper.getCurrentUser();
         String name = user.getFirstName() + " " + user.getLastName();
         summaryName.setText(name);
         double amount = user.getAmountOwed();

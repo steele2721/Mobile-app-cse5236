@@ -52,11 +52,12 @@
                   android:layout_below="@+id/grocery_activity"
                   tools:layout="@layout/fragment_grocery_list"/>
 
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
+        <!--<ProgressBar-->
+            <!--android:id="@+id/progressBar1"-->
+            <!--style="?android:attr/progressBarStyleLarge"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerInParent="true"/>-->
 
 </RelativeLayout>

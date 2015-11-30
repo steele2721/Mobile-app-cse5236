@@ -1,15 +1,13 @@
 package cse5321.roommateapp;
 
-import android.content.Context;
-import android.util.Log;
 
+import android.util.Log;
 
 import com.parse.ParseACL;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * List that holds the grocery objects
@@ -53,8 +51,6 @@ public class GroceryList {
     public void removeGrocery(Grocery grocery) {
         Log.d("GroceryList", "Removed: " + grocery.getName());
         mGroceryList.remove(grocery);
-        grocery.deleteInBackground();
-
     }
 
     /**
@@ -63,9 +59,20 @@ public class GroceryList {
      */
     public void recreate(List<ParseObject> objects) {
         mGroceryList = new ArrayList<>();
+
+        UserList users = UserList.get();
+        List<User> userList = users.getUserList();
         for (ParseObject object : objects) {
             Grocery grocery = new Grocery(object);
             addGrocery(grocery);
+
+            ParseACL groupACL = new ParseACL();
+            for (User user : userList) {
+                groupACL.setReadAccess(user.getParseUser(), true);
+                groupACL.setWriteAccess(user.getParseUser(), true);
+            }
+            object.setACL(groupACL);
+            object.saveInBackground();
         }
     }
 

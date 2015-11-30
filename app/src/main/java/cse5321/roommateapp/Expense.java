@@ -1,18 +1,19 @@
 package cse5321.roommateapp;
 
-import com.parse.ParseClassName;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 
-import java.util.Date;
-import java.util.UUID;
+import com.parse.ParseObject;
+
 
 /**
  * The Expense Object to be used with the application.
  */
-@ParseClassName("Expenses")
-public class Expense extends ParseObject{
-    private UUID mID;
+public class Expense {
+    private String mID;
+    private String mName;
+    private String mPaidBy;
+    private String mType;
+    private double mPrice;
+    private String mDueDate;
 
     /**
      * Default Constructor
@@ -25,15 +26,15 @@ public class Expense extends ParseObject{
      * @param name the name of the expense
      * @param paidBy the person that paid the expense
      * @param type the type of expense that it is
-     * @param ammount the amount of the expense
+     * @param amount the amount of the expense
      * @param dueDate when the bill is due / paid
      */
-    public Expense(String name, String paidBy, String type, double ammount, String dueDate) {
-        setName(name);
-        setType(type);
-        setPaidBy(paidBy);
-        setAmount(ammount);
-        setDueDate(dueDate);
+    public Expense(String name, String paidBy, String type, double amount, String dueDate) {
+        mName = name;
+        mDueDate = dueDate;
+        mPaidBy = paidBy;
+        mType = type;
+        mPrice = amount;
     }
 
     /**
@@ -41,20 +42,12 @@ public class Expense extends ParseObject{
      * @param object theparse object used to create the expense.
      */
     public Expense(ParseObject object) {
-        setObjectId(object.getObjectId());
-        setName(object.getString("Name"));
-        setPaidBy(object.getString("PaidBy"));
-        setType(object.getString("Type"));
-        setAmount(object.getDouble("Amount"));
-        setDueDate(object.getString("Date"));
-    }
-
-    /**
-     * Returns the UUID of the object
-     * @return UUID
-     */
-    public UUID getID() {
-        return mID;
+        mID = object.getObjectId();
+        mName = object.getString("Name");
+        mPaidBy = object.getString("PaidBy");
+        mType = object.getString("Type");
+        mPrice = object.getDouble("Price");
+        mDueDate = object.getString("DueDate");
     }
 
     // setter methods
@@ -64,7 +57,7 @@ public class Expense extends ParseObject{
      * @param value the name to be set
      */
     public void setName(String value) {
-        put("Name", value);
+        mName = value;
     }
 
     /**
@@ -72,7 +65,7 @@ public class Expense extends ParseObject{
      * @param value the type to be set
      */
     public void setType(String value) {
-        put("Type", value);
+        mType = value;
     }
 
     /**
@@ -80,7 +73,7 @@ public class Expense extends ParseObject{
      * @param value the person who paid
      */
     public void setPaidBy(String value) {
-        put("PaidBy", value);
+        mPaidBy = value;
     }
 
     /**
@@ -88,7 +81,7 @@ public class Expense extends ParseObject{
      * @param price the price to be set
      */
     public void setAmount(double price) {
-        put("Amount", price);
+        mPrice =  price;
     }
 
     /**
@@ -96,7 +89,7 @@ public class Expense extends ParseObject{
      * @param dueDate the due date to be set
      */
     public void setDueDate(String dueDate) {
-            put("Date", dueDate);
+            mDueDate = dueDate;
     }
 
 
@@ -107,7 +100,7 @@ public class Expense extends ParseObject{
      * @return the name of the expense
      */
     public String getName() {
-        return getString("Name");
+        return mName;
     }
 
     /**
@@ -115,7 +108,7 @@ public class Expense extends ParseObject{
      * @return the tpe of the expense
      */
     public String getType() {
-        return getString("Type");
+        return mType;
     }
 
     /**
@@ -123,7 +116,7 @@ public class Expense extends ParseObject{
      * @return the name of the person who paid the expense
      */
     public String getPaidBy() {
-        return getString("PaidBy");
+        return mPaidBy;
     }
 
     /**
@@ -131,7 +124,7 @@ public class Expense extends ParseObject{
      * @return the price of the expense
      */
     public double getPrice() {
-        return getInt("Amount");
+        return mPrice;
     }
 
     /**
@@ -139,20 +132,14 @@ public class Expense extends ParseObject{
      * @return the due date of the expense
      */
     public String getDueDate() {
-        return getString("Date");
+        return mDueDate;
     }
 
     /**
-     * Returns the objectId of the Parse object
-     * @return the objectId of the Parse object
+     * Returns the UUID of the object
+     * @return UUID
      */
-    public String getParseId() { return getObjectId(); }
-
-    /**
-     * Creates the query for class
-     * @return the query for class
-     */
-    public static ParseQuery<Expense> getQuery() {
-        return ParseQuery.getQuery(Expense.class);
+    public String getID() {
+        return mID;
     }
 }

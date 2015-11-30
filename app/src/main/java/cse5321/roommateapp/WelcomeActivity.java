@@ -20,13 +20,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        String userName = currentUser.get("FirstName").toString();
-        userName = userName + " " + currentUser.get("LastName").toString();
+        User currentUser = new User(ParseUser.getCurrentUser());
+        String userName = currentUser.getFirstName() + " " + currentUser.getLastName();
 
         Toast.makeText(WelcomeActivity.this, "Logged in as " + userName, Toast.LENGTH_SHORT).show();
         ParseInstallation.getCurrentInstallation().saveInBackground();

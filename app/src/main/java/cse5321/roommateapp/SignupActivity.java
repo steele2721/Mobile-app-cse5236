@@ -14,10 +14,10 @@ import android.widget.Toast;
 public class SignupActivity extends Activity {
     // Declare Variables
     Button submit;
-    String usernametxt;
-    String passwordtxt;
-    String firstNametxt;
-    String lastNametxt;
+    String userNameTxt;
+    String passwordTxt;
+    String firstNameTxt;
+    String lastNameTxt;
     EditText password;
     EditText username;
     EditText firstName;
@@ -42,13 +42,13 @@ public class SignupActivity extends Activity {
             public void onClick(View arg0) {
 
                 // Retrieve the text entered from the EditText
-                usernametxt = username.getText().toString();
-                passwordtxt = password.getText().toString();
-                firstNametxt = firstName.getText().toString();
-                lastNametxt = lastName.getText().toString();
+                userNameTxt = username.getText().toString();
+                passwordTxt = password.getText().toString();
+                firstNameTxt = firstName.getText().toString();
+                lastNameTxt = lastName.getText().toString();
 
                 // Force user to fill up the form
-                if (usernametxt.equals("") || passwordtxt.equals("") || firstNametxt.equals("") || lastNametxt.equals("")) {
+                if (userNameTxt.equals("") || passwordTxt.equals("") || firstNameTxt.equals("") || lastNameTxt.equals("")) {
                     Toast.makeText(getApplicationContext(),
                             "Please complete the sign up form",
                             Toast.LENGTH_LONG).show();
@@ -56,11 +56,10 @@ public class SignupActivity extends Activity {
 
                     // Save new user data into Parse.com Data Storage
                     User user = new User();
-                    user.setUserName(usernametxt);
-                    user.setPassword(passwordtxt);
-                    user.setFirstName(firstNametxt);
-                    user.setLastName(lastNametxt);
-                    user.setAmountPaid(0);
+                    user.setUserName(userNameTxt);
+                    user.setPassword(passwordTxt);
+                    user.setFirstName(firstNameTxt);
+                    user.setLastName(lastNameTxt);
                     user.setAmountOwed(0);
                     user.saveUser(getApplicationContext());
                     finish();

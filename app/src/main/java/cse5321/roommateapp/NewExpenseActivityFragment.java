@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -125,8 +124,7 @@ public class NewExpenseActivityFragment extends Fragment {
                         }
                     item = new Expense(name, paidBy, type, price, dueDate);
 
-                    ParseHelper.updateExpense(item);
-                    item.saveInBackground();
+                    ParseHelper.addExpense(item);
                     getActivity().finish();
                 }
             }
