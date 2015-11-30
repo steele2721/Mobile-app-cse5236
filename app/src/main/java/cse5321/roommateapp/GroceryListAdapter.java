@@ -3,6 +3,8 @@ package cse5321.roommateapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,6 +78,16 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // doesn't need to do anything!
+                        }
+                    });
+
+                    summaryBuilder.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // TODO: make it so that you can edit this item
+                            Intent i = new Intent(getContext(), NewGroceryActivity.class);
+                            Bundle b = new Bundle();
+                            getContext().startActivity(i);
                         }
                     });
 
