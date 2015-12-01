@@ -91,7 +91,7 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
                             b.putString("EXTRA_GROCERY_ADDEDBY", item.getAddedBy());
                             b.putString("EXTRA_GROCERY_ISFOR", item.getIsFor());
                             b.putInt("EXTRA_GROCERY_QUANTITY", item.getQuantity());
-                            b.putString("EXTRA_GROCERY_ID", item.getID().toString());
+                            b.putString("EXTRA_GROCERY_ID", item.getID());
 
                             if (item.getPrice() != -1) {
                                 b.putDouble("EXTRA_GROCERY_PRICE", item.getPrice());

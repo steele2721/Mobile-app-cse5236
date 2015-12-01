@@ -53,6 +53,16 @@ public class GroceryList {
         mGroceryList.remove(grocery);
     }
 
+    public Grocery getGrocery(String id) {
+        for (Grocery g : mGroceryList) {
+            if (g.getID().equals(id)) {
+                return g;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Rebuilds the list of groceries from Parse.
      * @param objects the list of ParseObjects used to rebuild the list

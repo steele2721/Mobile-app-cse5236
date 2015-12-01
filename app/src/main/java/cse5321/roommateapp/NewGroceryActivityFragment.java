@@ -14,7 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.Parse;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -27,6 +30,7 @@ import java.util.Locale;
 public class NewGroceryActivityFragment extends Fragment {
 
     public NewGroceryActivityFragment() {
+
     }
 
     @Override
@@ -50,6 +54,19 @@ public class NewGroceryActivityFragment extends Fragment {
 
         groceryIsFor.setAdapter(new ArrayAdapter<>(getContext(), R.layout.choose_user_spinner, users));
         groceryAddedBy.setAdapter(new ArrayAdapter<>(getContext(), R.layout.choose_user_spinner, users));
+
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if (bundle != null) {
+            Bundle b = bundle.getBundle("EXTRA_GROCERY");
+            groceryName.setText(b.getString("EXTRA_GROCERY_NAME"));
+            groceryQuantity.setText(Integer.toString(b.getInt("EXTRA_GROCERY_QUANTITY")));
+            groceryPrice.setText(Double.toString(b.getDouble("EXTRA_GROCERY_PRICE")));
+
+            createButton.setText("Update");
+            // TODO: make set addedby and isfor
+        } else {
+            Log.d("NewGrocery", "Bundle is null!");
+        }
 
         groceryPrice.addTextChangedListener(new TextWatcher() {
             String priceCurrent = "";
@@ -82,10 +99,6 @@ public class NewGroceryActivityFragment extends Fragment {
             }
         });
 
-        if (savedInstanceState.size() > 0) {
-            groceryName.setText(savedInstanceState.getString("EXTRA_GROCERY_NAME"));
-        }
-
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +117,12 @@ public class NewGroceryActivityFragment extends Fragment {
                 } else {
                     int quantity = Integer.parseInt(strQuantity);
 
-                    Grocery item;
+                    Grocery item = null;
+
+                    Bundle bundle = getActivity().getIntent().getExtras();
+                    if (bundle != null) {
+                        item = GroceryList.get().getGrocery(bundle.getBundle("EXTRA_GROCERY").getString("EXTRA_ID"));
+                    }
 
                     if (!strPrice.isEmpty()) {
                         double price;
@@ -114,12 +132,35 @@ public class NewGroceryActivityFragment extends Fragment {
                             Log.d("ParseError", "Price couldn't be parsed. Setting it to default.");
                             price = 0.0;
                         }
-                        item = new Grocery(name, addedBy, isFor, price, quantity);
+
+                        if (item != null) {
+                            item.setName(name);
+                            item.setIsFor(isFor);
+                            item.setAddedBy(addedBy);
+                            item.setQuantity(quantity);
+                            item.setPrice(price);
+
+                            ParseHelper.updateGrocery(item);
+
+                        } else {
+                            item = new Grocery(name, addedBy, isFor, price, quantity);
+                            ParseHelper.addGrocery(item);
+                        }
                     } else {
-                        item = new Grocery(name, addedBy, isFor, quantity);
+                        if (item != null) {
+                            item.setName(name);
+                            item.setIsFor(isFor);
+                            item.setAddedBy(addedBy);
+                            item.setQuantity(quantity);
+
+                            ParseHelper.updateGrocery(item);
+
+                        } else {
+                            item = new Grocery(name, addedBy, isFor, quantity);
+                            ParseHelper.addGrocery(item);
+                        }
                     }
 
-                    ParseHelper.addGrocery(item);
                     getActivity().finish();
                 }
             }
