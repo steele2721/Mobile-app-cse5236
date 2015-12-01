@@ -3,6 +3,8 @@ package cse5321.roommateapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +64,31 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense> {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // doesn't need to do anything!
+                            }
+                        });
+
+                        summaryBuilder.setNeutralButton("Edit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(getContext(), NewExpenseActivity.class);
+                                Bundle b = new Bundle();
+                                b.putString("EXTRA_EXPENSE_NAME", item.getName());
+                                b.putString("EXTRA_EXPENSE_PAIDBY", item.getPaidBy());
+                                b.putString("EXTRA_EXPENSE_DUEDATE", item.getDueDate());
+                                b.putString("EXTRA_EXPENSE_TYPE", item.getType());
+                                b.putString("EXTRA_EXPENSE_ID", item.getID());
+
+                                b.putDouble("EXTRA_EXPENSE_PRICE", item.getPrice());
+
+                                i.putExtra("EXTRA_EXPENSE", b);
+                                getContext().startActivity(i);
+                            }
+                        });
+
+                        summaryBuilder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
                             }
                         });
 

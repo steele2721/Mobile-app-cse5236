@@ -120,7 +120,7 @@ public class NewGroceryActivityFragment extends Fragment {
 
                     Bundle bundle = getActivity().getIntent().getExtras();
                     if (bundle != null) {
-                        item = GroceryList.get().getGrocery(bundle.getBundle("EXTRA_GROCERY").getString("EXTRA_ID"));
+                        item = GroceryList.get().getGrocery(bundle.getBundle("EXTRA_GROCERY").getString("EXTRA_GROCERY_ID"));
                     }
 
                     if (!strPrice.isEmpty()) {

@@ -62,6 +62,16 @@ public class NewExpenseActivityFragment extends Fragment {
         mExpensePaidBy.setAdapter(new ArrayAdapter<>(getContext(), R.layout.choose_user_spinner, users));
         mExpenseType.setAdapter(new ArrayAdapter<>(getContext(), R.layout.choose_user_spinner, types));
 
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if (bundle != null) {
+            Bundle b = bundle.getBundle("EXTRA_EXPENSE");
+            mExpenseName.setText(b.getString("EXTRA_EXPENSE_NAME"));
+            mExpenseDueDate.setText(b.getString("EXTRA_EXPENSE_DUEDATE"));
+            mExpenseAmount.setText(Double.toString(b.getDouble("EXTRA_EXPENSE_PRICE")));
+
+            mSubmitButton.setText("Update");
+        }
+
         mExpenseAmount.addTextChangedListener(new TextWatcher() {
             String priceCurrent = "";
             @Override
@@ -109,22 +119,37 @@ public class NewExpenseActivityFragment extends Fragment {
                 } else if (strPrice.isEmpty()) {
                     Toast.makeText(getContext(), "Please enter a amount of the expense!", Toast.LENGTH_SHORT).show();
                 } else if (dueDate.isEmpty()) {
-                Toast.makeText(getContext(), "Please enter the date the the expense is due!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please enter the date the the expense is due!", Toast.LENGTH_SHORT).show();
                 }  else if (type.isEmpty()) {
-                Toast.makeText(getContext(), "Please enter the type of the expense!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please enter the type of the expense!", Toast.LENGTH_SHORT).show();
                 } else {
+                    Expense item = null;
 
-                    Expense item;
-                        double price;
-                        try {
-                            price = NumberFormat.getInstance(Locale.getDefault()).parse(strPrice).doubleValue();
-                        } catch (ParseException e) {
-                            Log.d("ParseError", "Price couldn't be parsed. Setting it to default.");
-                            price = 0.0;
-                        }
-                    item = new Expense(name, paidBy, type, price, dueDate);
+                    Bundle bundle = getActivity().getIntent().getExtras();
+                    if (bundle != null) {
+                        item = ExpenseList.get().getExpense(bundle.getBundle("EXTRA_EXPENSE").getString("EXTRA_EXPENSE_ID"));
+                    }
 
-                    ParseHelper.addExpense(item);
+                    double price;
+                    try {
+                        price = NumberFormat.getInstance(Locale.getDefault()).parse(strPrice).doubleValue();
+                    } catch (ParseException e) {
+                        Log.d("ParseError", "Price couldn't be parsed. Setting it to default.");
+                        price = 0.0;
+                    }
+
+                    if (item != null) {
+                        item.setName(name);
+                        item.setAmount(price);
+                        item.setDueDate(dueDate);
+                        item.setType(type);
+                        item.setPaidBy(paidBy);
+                        ParseHelper.updateExpense(item);
+                    } else {
+                        item = new Expense(name, paidBy, type, price, dueDate);
+                        ParseHelper.addExpense(item);
+                    }
+
                     getActivity().finish();
                 }
             }

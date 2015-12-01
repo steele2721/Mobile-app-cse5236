@@ -49,6 +49,16 @@ public class ExpenseList {
         mExpenseList.remove(expense);
     }
 
+    public Expense getExpense(String id) {
+        for (Expense e : mExpenseList) {
+            if (e.getID().equals(id)) {
+                return e;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Rebuilds the list of expenses from Parse.
      * @param objects the list of ParseObjects used to rebuild the list
