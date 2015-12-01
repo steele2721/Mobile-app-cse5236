@@ -16,10 +16,10 @@ import com.parse.ParseUser;
 
 public class LoginSignupActivity extends Activity {
     // Declare Variables
-    Button loginbutton;
+    Button loginButton;
     Button signup;
-    String usernametxt;
-    String passwordtxt;
+    String usernameTxt;
+    String passwordTxt;
     EditText password;
     EditText username;
 
@@ -35,19 +35,19 @@ public class LoginSignupActivity extends Activity {
         password = (EditText) findViewById(R.id.password);
 
         // Locate Buttons in main.xml
-        loginbutton = (Button) findViewById(R.id.login);
+        loginButton = (Button) findViewById(R.id.login);
         signup = (Button) findViewById(R.id.signup);
 
         // Login Button Click Listener
-        loginbutton.setOnClickListener(new OnClickListener() {
+        loginButton.setOnClickListener(new OnClickListener() {
 
             public void onClick(View arg0) {
                 // Retrieve the text entered from the EditText
-                usernametxt = username.getText().toString();
-                passwordtxt = password.getText().toString();
+                usernameTxt = username.getText().toString();
+                passwordTxt = password.getText().toString();
 
                 // Send data to Parse.com for verification
-                ParseUser.logInInBackground(usernametxt, passwordtxt,
+                ParseUser.logInInBackground(usernameTxt, passwordTxt,
                         new LogInCallback() {
                             public void done(ParseUser user, ParseException e) {
                                 if (user != null) {

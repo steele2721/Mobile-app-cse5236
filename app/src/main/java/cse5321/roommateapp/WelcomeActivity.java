@@ -29,8 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         Toast.makeText(WelcomeActivity.this, "Logged in as " + userName, Toast.LENGTH_SHORT).show();
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-        ParseHelper.getExpenseList();
-        ParseHelper.getGroceryList();
+
         ParseHelper.getUserList();
 
         FragmentManager fm = getSupportFragmentManager();
