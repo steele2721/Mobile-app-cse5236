@@ -63,7 +63,6 @@ public class NewGroceryActivityFragment extends Fragment {
             groceryPrice.setText(Double.toString(b.getDouble("EXTRA_GROCERY_PRICE")));
 
             createButton.setText("Update");
-            // TODO: make set addedby and isfor
         } else {
             Log.d("NewGrocery", "Bundle is null!");
         }

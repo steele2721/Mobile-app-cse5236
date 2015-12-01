@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.parse.Parse;
+
 import java.util.List;
 
 /**
@@ -45,6 +47,7 @@ public class GroceryListActivityFragment extends Fragment {
     public void removeCheckedGroceries() {
         for (Grocery g : mAdapter.getCheckedPositions()) {
             GroceryList.get().removeGrocery(g);
+            ParseHelper.removeGrocery(g);
         }
         updateListView();
     }

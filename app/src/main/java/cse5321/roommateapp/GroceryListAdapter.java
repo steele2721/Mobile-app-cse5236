@@ -30,10 +30,12 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
 
     public GroceryListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
+        mCheckedItems = new ArrayList<>();
     }
 
     public GroceryListAdapter(Context context, int resource, List<Grocery> items) {
         super(context, resource, items);
+        mCheckedItems = new ArrayList<>();
     }
 
     @Override
@@ -115,8 +117,10 @@ public class GroceryListAdapter extends ArrayAdapter<Grocery> {
             groceryCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                        //mCheckedItems.add(item);
+                    if (isChecked && !mCheckedItems.contains(item)) {
+                        mCheckedItems.add(item);
+                    } else if (!isChecked && mCheckedItems.contains(item)) {
+                        mCheckedItems.remove(item);
                     }
                 }
             });
