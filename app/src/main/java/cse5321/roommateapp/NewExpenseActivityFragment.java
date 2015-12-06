@@ -144,7 +144,7 @@ public class NewExpenseActivityFragment extends Fragment {
                         item.setDueDate(dueDate);
                         item.setType(type);
                         item.setPaidBy(paidBy);
-                        ParseHelper.updateExpense(item);
+                        ParseHelper.updateExpense(item,getContext());
                     } else {
                         item = new Expense(name, paidBy, type, price, dueDate);
                         ParseHelper.addExpense(item);

@@ -27,7 +27,7 @@ public class GroceryListActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_grocery_list, container, false);
-        ParseHelper.getGroceryList();
+        ParseHelper.getGroceryList(getContext());
         mGroceries = GroceryList.get().getGroceryList();
         mListView = (ListView) v.findViewById(R.id.grocery_list_view);
         mAdapter = new GroceryListAdapter(getActivity(), R.id.grocery_list_view, mGroceries);
@@ -37,7 +37,7 @@ public class GroceryListActivityFragment extends Fragment {
     }
 
     public void updateListView() {
-        ParseHelper.getGroceryList();
+        ParseHelper.getGroceryList(getContext());
         mAdapter.notifyDataSetChanged();
         mGroceries = GroceryList.get().getGroceryList();
         mListView = (ListView) getActivity().findViewById(R.id.grocery_list_view);

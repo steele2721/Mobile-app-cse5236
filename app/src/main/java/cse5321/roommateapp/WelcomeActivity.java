@@ -1,6 +1,8 @@
 package cse5321.roommateapp;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,8 +31,12 @@ public class WelcomeActivity extends AppCompatActivity {
         Toast.makeText(WelcomeActivity.this, "Logged in as " + userName, Toast.LENGTH_SHORT).show();
         ParseInstallation.getCurrentInstallation().saveInBackground();
 
-
-        ParseHelper.getUserList();
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected()){
+            ParseHelper.getUserList(this);
+        }
 
         FragmentManager fm = getSupportFragmentManager();
         mGroceryListActivityFragment = (GroceryListActivityFragment) fm.findFragmentById(R.id.grocery_list_fragment);

@@ -107,6 +107,7 @@ public class NewGroceryActivityFragment extends Fragment {
                 String strQuantity = groceryQuantity.getText().toString().trim();
                 String strPrice = groceryPrice.getText().toString().trim().substring(1);
 
+
                 if (name.isEmpty()) {
                     Toast.makeText(getContext(), "Please enter the name of this grocery item!", Toast.LENGTH_SHORT).show();
                 } else if (isFor.isEmpty()) {
@@ -139,7 +140,7 @@ public class NewGroceryActivityFragment extends Fragment {
                             item.setQuantity(quantity);
                             item.setPrice(price);
 
-                            ParseHelper.updateGrocery(item);
+                            ParseHelper.updateGrocery(item,getContext());
 
                         } else {
                             item = new Grocery(name, addedBy, isFor, price, quantity);
@@ -152,7 +153,7 @@ public class NewGroceryActivityFragment extends Fragment {
                             item.setAddedBy(addedBy);
                             item.setQuantity(quantity);
 
-                            ParseHelper.updateGrocery(item);
+                            ParseHelper.updateGrocery(item,getContext());
 
                         } else {
                             item = new Grocery(name, addedBy, isFor, quantity);

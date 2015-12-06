@@ -25,7 +25,7 @@ public class ExpenseListActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_expense_list, container, false);
-        ParseHelper.getExpenseList();
+        ParseHelper.getExpenseList(getContext());
         mExpenses = ExpenseList.get().getExpenseList();
         mListView = (ListView) v.findViewById(R.id.expense_list_view);
         mAdapter = new ExpenseListAdapter(getActivity(), R.id.expense_list_view, mExpenses);
@@ -34,7 +34,7 @@ public class ExpenseListActivityFragment extends Fragment {
     }
 
     public void updateListView() {
-        ParseHelper.getExpenseList();
+        ParseHelper.getExpenseList(getContext());
         mExpenses = ExpenseList.get().getExpenseList();
         mListView = (ListView) getActivity().findViewById(R.id.expense_list_view);
         mAdapter = new ExpenseListAdapter(getActivity(), R.id.expense_list_view, mExpenses);

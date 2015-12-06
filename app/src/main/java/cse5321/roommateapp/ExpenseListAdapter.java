@@ -88,7 +88,7 @@ public class ExpenseListAdapter extends ArrayAdapter<Expense> {
                         summaryBuilder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
+                                ParseHelper.removeExpense(item);
                             }
                         });
 
